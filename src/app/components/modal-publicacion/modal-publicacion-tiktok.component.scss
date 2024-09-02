@@ -1,0 +1,76 @@
+/* TikTok */
+.tiktok-preview {
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  background-color: #ffffff;
+  width: 300px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.tiktok-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.tiktok-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  object-fit: contain;
+}
+
+.tiktok-header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tiktok-header-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #888;
+}
+
+.tiktok-content {
+  padding: 0;
+}
+
+.tiktok-image,
+.tiktok-video {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.tiktok-footer {
+  padding: 10px;
+}
+
+.tiktok-footer p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.tiktok-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+  justify-content: space-around;
+}
+
+.tiktok-action {
+  background-color: transparent;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.tiktok-action i {
+  margin-right: 4px;
+}

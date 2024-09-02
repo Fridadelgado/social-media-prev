@@ -1,0 +1,14 @@
+<!-- Contenedor para un grupo de acciones. El atributo 'size' controla el tamaño de los iconos de las acciones. -->
+<nb-actions size="small">
+  <!-- Primera acción con un ícono de campana y un distintivo. Se puede utilizar para representar notificaciones. -->
+  <nb-action icon="mdi-bell-success"  badgeText="9" badgePosition="top end" badgeStatus="danger">
+    <!-- 'icon' especifica el ícono de la acción.
+         'badgeText' es el texto dentro del distintivo, en este caso, un número.
+         'badgePosition' define la posición del distintivo en relación con el ícono.
+         'badgeStatus' determina el estilo del distintivo, usando uno de los estados predefinidos por Nebular (p.ej., 'danger' para rojo). -->
+  </nb-action>
+  <!-- Segunda acción con un ícono de voz y un distintivo. Podría usarse para mensajes o alertas de voz. -->
+  <nb-action icon="account-voice"   badgeText="5" badgePosition="top end" badgeStatus="danger">
+    <!-- Similar a la primera acción, pero con un ícono y número de distintivo diferentes. -->
+  </nb-action>
+</nb-actions>

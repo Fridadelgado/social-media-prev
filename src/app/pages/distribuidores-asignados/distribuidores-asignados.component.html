@@ -1,0 +1,14 @@
+<!--
+Este código HTML muestra el uso de un elemento <iframe> para incrustar contenido externo o de otra página dentro de la aplicación Angular.
+Se utiliza la vinculación de propiedad de Angular [src]="urlSegura" para enlazar dinámicamente la URL del contenido que se desea mostrar en el iframe.
+El atributo 'sandbox' se utiliza para restringir las operaciones que el contenido dentro del iframe puede realizar por razones de seguridad. Las opciones permitidas son:
+- allow-same-origin: Permite que el contenido del iframe sea tratado como siendo del mismo origen que el contenedor.
+- allow-scripts: Permite la ejecución de scripts dentro del iframe.
+- allow-popups: Permite que el contenido del iframe abra ventanas emergentes o utilice window.open().
+- allow-forms: Permite que los formularios dentro del iframe sean enviados.
+El objetivo de estas restricciones es ofrecer una capa adicional de seguridad, minimizando los riesgos que el contenido incrustado pueda representar.
+Los atributos 'width' y 'height' se establecen al 100% para que el iframe ocupe todo el espacio disponible en su contenedor, adaptándose al tamaño de este.
+-->
+<iframe [src]="urlSegura" sandbox="allow-same-origin allow-scripts allow-popups allow-forms" width="100%" height="100%">
+  <!-- El iframe ahora intentará ocupar el 100% del espacio disponible -->
+</iframe>

@@ -1,0 +1,23 @@
+<!--
+  El componente <full-calendar> se utiliza para integrar FullCalendar en la aplicación Angular.
+  [options]="calendarOptions" vincula la propiedad calendarOptions del componente Angular con las opciones de configuración de FullCalendar.
+  Esto puede incluir la configuración de eventos, estilos, interacciones y más.
+-->
+<full-calendar [options]="calendarOptions" >
+  <!--
+    Dentro de <full-calendar>, se define un <ng-template> para personalizar el contenido que se muestra para cada evento en el calendario.
+    La directiva #eventContent define una plantilla de contenido de evento que se puede personalizar según sea necesario.
+
+    let-arg="arg" permite acceder a los datos del evento y del calendario pasados por FullCalendar a la plantilla.
+    Estos datos incluyen información como el texto de la hora del evento (arg.timeText) y el título del evento (arg.event.title).
+  -->
+  <ng-template #eventContent let-arg>
+    <!--
+      Dentro de la plantilla, se muestra la hora del evento en negritas (<b>{{arg.timeText}}</b>)
+      y el título del evento en cursivas (<i>{{arg.event.title}}</i>).
+      Esta personalización permite a los desarrolladores mostrar los eventos en el calendario de una manera que se ajuste a las necesidades de su aplicación.
+    -->
+    <b>{{arg.timeText}}</b> <!-- Muestra la hora del evento. -->
+    <i>{{arg.event.title}}</i> <!-- Muestra el título del evento. -->
+  </ng-template>
+</full-calendar>

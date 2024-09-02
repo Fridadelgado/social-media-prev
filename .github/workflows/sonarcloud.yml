@@ -1,0 +1,32 @@
+name: Verificar Quality Gate de SonarCloud
+
+on:
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  checkQualityGate:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso para verificar el estado de la Quality Gate de SonarCloud
+      - name: SonarCloud Quality Gate
+        id: check_quality_gate
+        run: |
+          status=$(curl -u ${{ secrets.SONAR_TOKEN }}: \
+                  "https://sonarcloud.io/api/qualitygates/project_status?projectKey=SeekopEnterprise_BI-ADMIN-INTERFACES-PADRE" \
+                  | jq -r '.projectStatus.status')
+          echo "El estado de la Quality Gate es $status"
+          echo "::set-output name=status::$status"
+
+      # Paso para comentar en el pull request si la Quality Gate falla
+      - name: Comment on Pull Request
+        if: ${{ steps.check_quality_gate.outputs.status != 'OK' }}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            :x: ¡La Quality Gate de SonarCloud falló!
+            Por favor, revisa el reporte de SonarCloud para más detalles.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

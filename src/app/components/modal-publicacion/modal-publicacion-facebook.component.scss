@@ -1,0 +1,260 @@
+
+/* Estilos específicos para la previsualización de Facebook */
+
+.facebook-preview {
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  background-color: #ffffff;
+  width: 400px;
+  margin-bottom: 16px;
+  font-family: Arial, sans-serif;
+  color: #1c1e21;
+}
+
+.facebook-post-preview .post-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.facebook-post-preview .post-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.facebook-post-preview .post-header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.facebook-post-preview .post-header-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #606770;
+}
+
+.facebook-post-preview .post-content {
+  padding: 10px;
+}
+
+.facebook-post-preview .post-content p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.post-video,
+.post-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+  object-fit: cover;
+}
+
+.post-image {
+  height: auto;
+  max-height: 300px;
+}
+
+/* Estilos específicos para Facebook Story */
+.facebook-story-preview {
+  background: linear-gradient(180deg, #1a1a1a, #333333);
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.story-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  color: white;
+}
+
+.story-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: contain;
+}
+
+.story-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.story-info strong {
+  font-size: 14px;
+}
+
+.story-info p {
+  margin: 0;
+  font-size: 12px;
+  color: #bdbdbd;
+}
+.story-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.story-image, .story-video {
+  width: 100%;
+  max-height: 60%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.story-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.footer-button {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.footer-icons nb-icon {
+  color: white;
+  margin-left: 10px;
+}
+
+/* Estilos específicos para Facebook Reel */
+.facebook-reel-preview {
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+}
+
+.reel-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.back-icon {
+  color: white;
+  margin-right: 10px;
+}
+
+.reel-info {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.reel-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.follow-button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: 2px 8px;
+  margin-left: 10px;
+}
+
+.reel-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+.reel-image,
+.reel-video {
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.video-unavailable {
+  position: absolute;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.reel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid #333;
+}
+
+.footer-button {
+  background-color: white;
+  color: black;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.interaction-icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.icon-text nb-icon {
+  margin-right: 5px;
+}
+
+.reel-caption {
+  padding: 10px;
+  background-color: #000;
+  border-top: 1px solid #333;
+  font-size: 14px;
+}
+
+.music-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.music-info nb-icon {
+  margin-right: 5px;
+}

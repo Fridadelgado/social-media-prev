@@ -1,0 +1,60 @@
+name: Desplegar Admin Interfaces Padre
+
+# Este workflow se activará cuando se hagan push a las ramas master y dev.
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+    - name: Checando que todo ok
+      uses: actions/checkout@v2
+
+    - name: Instalando Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18.13' # Actualizado a la versión 18
+
+    # Se elimina la instalación de Yarn y se usa npm para instalar dependencias
+    - name: Instalando todo lo necesario del proyecto Angular
+      run: npm install
+
+    - name: Construyendo proyecto Angular
+      run: npm run build
+
+    - name: Configurando AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
+
+    - name: Vaciar el bucket
+      run: aws s3 rm s3://qa.admin.interfaces.sicopweb.net/ --recursive
+
+    - name: Verificar si el bucket está vacío
+      run: |
+        IS_BUCKET_EMPTY=$(aws s3 ls s3://qa.admin.interfaces.sicopweb.net/ --recursive | wc -l)
+        echo "IS_BUCKET_EMPTY=$IS_BUCKET_EMPTY" >> $GITHUB_ENV
+
+    - name: Subiendo contenido de dist/bi-admin-interfaces-padre/ a Amazon S3
+      run: |
+        if [ "${{ env.IS_BUCKET_EMPTY }}" -eq "0" ]; then
+          until aws s3 sync dist/bi-admin-interfaces-padre/ s3://qa.admin.interfaces.sicopweb.net/ --exclude "WEB-INF/*"
+          do
+            echo "La sincronización falló, reintentando..."
+            sleep 1
+          done
+        else
+          echo "El bucket no está vacío. Por favor, comprueba manualmente."
+          exit 1
+        fi
+
+    - name: Invalidar la caché de CloudFront
+      run: aws cloudfront create-invalidation --distribution-id E95GOKIG6KW4P --paths "/*"

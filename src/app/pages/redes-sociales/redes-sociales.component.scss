@@ -1,0 +1,9 @@
+/* Estilos para elementos <iframe> en la aplicación. */
+
+iframe {
+  display: block; /* Hace que el <iframe> se comporte como un bloque, ocupando el ancho completo de su contenedor.
+                     Esto elimina cualquier espacio extra alrededor del <iframe> que podría introducirse por el comportamiento inline por defecto. */
+  border: none; /* Elimina el borde por defecto del <iframe>, proporcionando una apariencia más limpia e integrada
+                   con el diseño general de la aplicación. Es útil cuando se incrustan contenidos y se desea evitar
+                   la apariencia de "caja dentro de una caja" que los bordes pueden crear. */
+}

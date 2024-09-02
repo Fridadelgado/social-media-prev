@@ -1,0 +1,89 @@
+<!-- redessociales-kpis.component.html -->
+<div class="row">
+  <div class="row">
+    <div class="col-md-4 mt-1">
+      <h4>Filtrar por:</h4>
+    </div>
+    <div class="col-md-6">
+      <h2 class="my-3">{{ currentTitle }}</h2>
+    </div>
+  </div>
+
+  <!-- Íconos de redes sociales como botones que se pueden seleccionar -->
+  <div class="col-md-12 col-lg-4">
+    <strong>Red Social:</strong>
+    <div class="d-flex ">
+      <div *ngFor="let social of redesSociales" class="row">
+        <nb-icon [icon]="social.icon" pack="seekop" (click)="toggleSocialMedia(social)" class="filter-icons icon-hover"
+          [class.icon-active]="social.selected" [nbTooltip]="social.nombre"
+          style="font-size: xx-large; cursor: pointer;">
+        </nb-icon>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-12 col-lg-5 mt-4 mt-md-4 mt-lg-0 time-icons">
+    <div class="row ms-lg-5">
+      <strong class="ms-lg-5">Periodo:</strong>
+      <div class="col-2 col-sm-1 col-md-1 col-lg-1 ms-lg-5">
+        <nb-icon icon="calendar-month" pack="seekop" (click)="setTimeFilter('days_28')" class="icon-hover"
+          [class.icon-active]="timeFilter === 'days_28'"
+          style="width: 40px; height: 40px; font-size: xx-large; cursor: pointer;" nbTooltip="Filtrar por mes"
+          nbTooltipPlacement="bottom"></nb-icon>
+      </div>
+      <div class="col-2 col-sm-1 col-md-1 col-lg-1 ms-lg-5">
+        <nb-icon icon="calendar-week" pack="seekop" (click)="setTimeFilter('week')" class="icon-hover"
+          [class.icon-active]="timeFilter === 'week' "
+          style="width: 40px; height: 40px; font-size: xx-large; cursor: pointer;" nbTooltip="Filtrar por semana"
+          nbTooltipPlacement="bottom"></nb-icon>
+      </div>
+      <div class="col-2 col-sm-1 col-md-1 col-lg-1 ms-lg-5">
+        <nb-icon icon="calendar-day" pack="seekop" (click)="setTimeFilter('day')" class="icon-hover"
+          [class.icon-active]="timeFilter === 'day'"
+          style="width: 40px; height: 40px; font-size: xx-large; cursor: pointer;" nbTooltip="Filtrar por día"
+          nbTooltipPlacement="bottom"></nb-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-3 mt-4  mt-md-4 mt-lg-0">
+    <!-- nb-select de Nebular para selección múltiple -->
+    <div class="row">
+      <strong>Categoría:</strong>
+      <nb-select multiple [(selected)]="selectedCategories" (selectedChange)="applyFilters()">
+        <nb-option *ngFor="let category of allCategories" [value]="category">
+          {{ category }}
+        </nb-option>
+      </nb-select>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <!-- Mensaje cuando no hay selección de red social -->
+  <div *ngIf="selectedSocialMedias.size === 0" class="row justify-content-center align-items-center"
+    style="height: 300px;">
+    <div class="col-2 col-md-2  col-lg-4 mt-5"></div>
+    <div class="col text-center mt-5">
+      <h4 class="mt-5"><nb-icon icon="info-outline" pack="eva"
+          style="font-size: 40px; color: #aaa; margin-right: 10px; "></nb-icon>No hay datos que mostrar</h4>
+      <p>Selecciona una red social para comenzar a visualizar los KPIs.</p>
+    </div>
+  </div>
+
+  <!-- Contenedor principal para una categoría de KPIs -->
+  <div *ngIf="selectedSocialMedias.size > 0">
+    <div *ngFor="let group of groupedKpisData" class="kpi-category-group">
+      <h4>{{ group.category }}</h4>
+      <div class="row">
+        <!-- Itera sobre los KPIs y colócalos en una cuadrícula -->
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-3" *ngFor="let kpi of group.kpis">
+          <app-kpi-card [socialMedia]="kpi"></app-kpi-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,43 @@
+{
+  "pages": {
+    "calendariopublicaciones": {},
+    "conversaciones": {},
+    "distribuidores-asignados": {},
+    "home": {},
+    "login": {},
+    "publicaciones": {
+      "botonCrearPublicacion": "Create Publication",
+      "labelPublicadoEn": "Published on:",
+      "labelMasInfo": "More information"
+    }
+  },
+  "components": {
+    "modal-publicacion": {
+      "labelCrearPublicacion": "Create Publication",
+      "altPublicacion": "Publication",
+      "placeHolderSeleccionaRedSocial": "Select a social network",
+      "validacionSeleccionaRedSocial": "You must select at least one social network.",
+      "placeHolderSeleccionaSubcampanas": "Selecciona las subcampañas",
+      "validacionSeleccionaSubcampanas": "Debes seleccionar al menos una subcampaña.",
+      "placeHolderTituloPublicacion": "Publication Title",
+      "validacionTituloPublicacion":"Publication title is required.",
+      "placehoderDescripcionPublicacion": "Write a description",
+      "validacionDescripcionPublicacion": "Publication description is required.",
+      "labelPrevisualizacion": "Preview:",
+      "altPrevisualizacion": "Preview",
+      "botonDefinirAudienciaObjetivo": "Define Target Audience",
+      "botonPublicar": "Publish",
+      "botonCalendarizar": "Schedule",
+      "botonCancelar": "Cancel",
+      "dropZoneDefault": "Drag your image here or click to select",
+      "dropZoneValidacion": "Invalid file. Consider PNG, JPG, etc.",
+      "dropZoneSuccess": "File uploaded successfully"
+    },
+    "calendariopublicaciones": {},
+    "conversaciones": {},
+    "distribuidores-asignados": {},
+    "home": {},
+    "login": {},
+    "publicaciones": {}
+  }
+}

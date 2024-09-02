@@ -1,0 +1,44 @@
+{
+  "pages": {
+    "calendariopublicaciones": {},
+    "conversaciones": {},
+    "distribuidores-asignados": {},
+    "home": {},
+    "login": {},
+    "publicaciones": {
+      "botonCrearPublicacion": "Crear Publicación",
+      "labelPublicadoEn": "Publicado en:",
+      "labelMasInfo": "Más información"
+    }
+  },
+  "components": {
+    "modal-publicacion": {
+      "labelCrearPublicacion": "Crear Publicación",
+      "altPublicacion": "Publicación",
+      "placeHolderSeleccionaRedSocial": "Selecciona una red social",
+      "validacionSeleccionaRedSocial": "Debes seleccionar al menos una red social.",
+      "placeHolderSeleccionaSubcampanas": "Selecciona las subcampañas",
+      "validacionSeleccionaSubcampanas": "Debes seleccionar al menos una subcampaña.",
+      "placeHolderTituloPublicacion": "Titulo de la publicación",
+      "validacionTituloPublicacion":"El título de la publicación es obligatorio.",
+      "placehoderDescripcionPublicacion": "Escribe una descripción",
+      "validacionDescripcionPublicacion": " La descripción de la publicación es obligatoria.",
+      "labelPrevisualizacion": "Previsualización:",
+      "altPrevisualizacion": "Previsualización",
+      "botonDefinirAudienciaObjetivo": "Definir Audiencia Objetivo",
+      "botonPublicar": "Publicar",
+      "botonCalendarizar": "Calendarizar",
+      "botonCancelar": "Cancelar",
+      "dropZoneDefault": "Arrastra tu imagen o video aquí o haz clic para seleccionar",
+      "dropZoneValidacion": "Archivo no válido. Considera PNG, JPG, etc.",
+      "dropZoneSuccess": "Archivo subido exitosamente"
+
+    },
+    "calendariopublicaciones": {},
+    "conversaciones": {},
+    "distribuidores-asignados": {},
+    "home": {},
+    "login": {},
+    "publicaciones": {}
+  }
+}

@@ -1,0 +1,122 @@
+// Importación del sistema de temas de Nebular y el tema por defecto.
+@forward '@nebular/theme/styles/theming';
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/corporate';
+
+// Habilita las propiedades CSS personalizadas para permitir una mayor flexibilidad en la tematización.
+$nb-enable-css-custom-properties: true;
+
+// Registro de un tema personalizado para Seekop utilizando nb-register-theme.
+$nb-themes: nb-register-theme(
+  (
+    // Configuración del color de fondo por defecto para el layout principal.
+    layout-background-color: #ffffff,
+
+    // Estilos personalizados para tarjetas (Card) en Seekop.
+    card-border-color: #ffffff,
+    card-background-color: #ffffff 0% 0% no-repeat padding-box,
+    card-shadow: 0px 3px 6px #c5c5c580,
+    card-border-radius: 20px,
+
+    // Estilos para el menú y sidebar, incluyendo colores de texto e iconos, y el color de fondo del sidebar.
+    menu-group-text-color: #ffffff,
+    menu-text-color: #8095bf,
+    menu-item-icon-color: #8095bf,
+    menu-item-divider-color: #002b84,
+    menu-item-icon-active-color: #ffffff,
+    menu-item-active-text-color: #ffffff,
+    sidebar-background-color: #002b84,
+    sidebar-menu-item-highlight-color: #ffffff,
+    sidebar-height: auto,
+
+    // Color para iconos de acciones dentro de la aplicación.
+    actions-icon-color: #002a7f,
+
+    // Paleta de colores definida para Seekop, incluyendo primario, éxito, información, advertencia y peligro.
+    color-primary-100: #A3BD36, // Más claro
+    color-primary-200: #A3BD36,
+    color-primary-300: #A3BD36,
+    color-primary-400: #A3BD36,
+    color-primary-500: #A3BD36, // Color primario estándar
+    color-primary-600: #A3BD36,
+    color-primary-700: #A3BD36,
+    color-primary-800: #A3BD36,
+    color-primary-900: #A3BD36, // Más oscuro
+    color-success-100: #c6def8, // y así sucesivamente para los otros colores...
+    // Continúa con color-info, color-warning, color-danger
+    color-success-200: #91bbf2,
+    color-success-300: #568ad8,
+    color-success-400: #2c5db2,
+    color-success-500: #002a7f,
+    color-success-600: #00206d,
+    color-success-700: #00185b,
+    color-success-800: #001049,
+    color-success-900: #000b3c,
+    color-info-100: #ebf3fb,
+    color-info-200: #d8e6f8,
+    color-info-300: #bdd0ec,
+    color-info-400: #a3b7d9,
+    color-info-500: #8196c0,
+    color-info-600: #5e73a5,
+    color-info-700: #41548a,
+    color-info-800: #29396f,
+    color-info-900: #18265c,
+    color-warning-100: #fefad6,
+    color-warning-200: #fef4ae,
+    color-warning-300: #feec85,
+    color-warning-400: #fde467,
+    color-warning-500: #fdd835,
+    color-warning-600: #d9b526,
+    color-warning-700: #b6931a,
+    color-warning-800: #927310,
+    color-warning-900: #795c0a,
+    color-danger-100: #fcebeb,
+    color-danger-200: #f8d7d7,
+    color-danger-300: #f3b3b3,
+    color-danger-400: #f44336,
+    color-danger-500: #f44336,
+    color-danger-600: #f44336,
+    color-danger-700: #f44336,
+    color-danger-800: #aa2e2e,
+    color-danger-900: #811919,
+
+    // Espaciado superior del layout.
+    layout-padding-top: 2.25rem,
+
+    // Margen para iconos dentro de elementos de menú.
+    menu-item-icon-margin: 0 0.5rem 0 0,
+
+    // Alturas predefinidas para tarjetas (Card) de diferentes tamaños y margen inferior.
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
+
+    // Ancho mínimo para elementos select.
+    select-min-width: 6rem,
+
+    // Estilo de fondo y sombra para el componente slide-out.
+    slide-out-background: linear-gradient(270deg, #f7eded 0%, #e4e9f2 100%),
+    slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+    slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
+
+    input-basic-background-color: #fff,
+    input-basic-border-color: #C5C5C5,
+    input-basic-placeholder-text-color:#C5C5C5,
+    //input-basic-text-color: red,
+
+    //select-medium-placeholder-text-color: red,
+    select-outline-basic-background-color: #fff,
+    select-outline-basic-border-color:#C5C5C5,
+    //select-outline-basic-border-color: red,
+    //select-outline-basic-text-color: red
+    select-outline-basic-placeholder-text-color:#C5C5C5,
+
+  ),
+  'seekop', // Nombre del tema.
+  'corporate' // Tema base sobre el cual se aplican las personalizaciones.
+);

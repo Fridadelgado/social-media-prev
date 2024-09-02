@@ -1,0 +1,78 @@
+.pinterest-preview {
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    background-color: #ffffff;
+    width: 280px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin-bottom: 16px;
+  }
+  
+  .pinterest-preview .pin-header {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  
+  .pinterest-preview .pin-logo {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    object-fit: contain;
+  }
+  
+  .pinterest-preview .pin-header-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .pinterest-preview .pin-header-info p {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+  }
+  
+  .pinterest-preview .pin-content {
+    padding: 0;
+  }
+  
+  .pin-image,
+  .pin-video {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  
+  .pinterest-preview .pin-footer {
+    padding: 10px;
+  }
+  
+  .pinterest-preview .pin-footer p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+  
+  .pinterest-preview .pin-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  
+  .pinterest-preview .pin-action {
+    background-color: #e60023; /* Rojo de Pinterest */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .pinterest-preview .pin-action i {
+    font-size: 14px;
+    color: #333;
+  }
+  

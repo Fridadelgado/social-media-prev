@@ -1,0 +1,50 @@
+.kpi-card .row {
+  width: 100%; /* Asegura que la fila ocupe todo el ancho del card */
+}
+
+.kpi-card {
+  position: relative; /* Agrega esta línea si aún no está */
+  background: #FFFFFF no-repeat padding-box; // Fondo blanco sin imagen de fondo
+  box-shadow: 0px 3px 6px #272D3B33; // Sombra suave con opacidad
+  border-radius: 20px; // Bordes redondeados
+  opacity: 1; // Opacidad completa
+  padding: 1px; // Reducir el padding general del card
+  margin: 5px; // Ajusta el margen según sea necesario
+
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Añade suavidad a la transición de estilos */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra más sutil por defecto */
+
+  height: 213px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño para dar efecto de elevación */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada para el efecto de realce */
+  }
+
+}
+
+/* Estilos para los iconos de cambio */
+.change-icon {
+  position: absolute;
+  font-size: 85px; /* Ajusta el tamaño según sea necesario */
+  opacity: 0.2; /* Ajusta la transparencia según prefieras */
+  right: 20px; /* Posiciona a la derecha dentro del card */
+  top: 20px; /* Posiciona arriba dentro del card */
+}
+
+.positive-change {
+  color: #A3BD36; /* Verde para cambio positivo */
+  top: -4%; /* Ajusta para que aparezca justo debajo del valor */
+  left: 25%;
+  transform: translateX(-50%);
+}
+
+.negative-change {
+  color: #F77C74; /* Rojo para cambio negativo */
+  top: 59%; /* Igual, ajusta para que aparezca justo debajo del valor */
+  left: 25%;
+  transform: translateX(-50%);
+}

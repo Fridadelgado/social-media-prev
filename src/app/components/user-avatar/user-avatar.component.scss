@@ -1,0 +1,59 @@
+/* Contenedor principal del componente de usuario, configurado para utilizar flexbox para alinear elementos horizontalmente y centrarlos verticalmente. */
+.custom-nb-user {
+  display: flex;
+  align-items: center;
+  font-family: sans-serif; /* Se puede ajustar según la tipografía deseada para la aplicación. */
+}
+
+/* Estilos específicos para el contenedor del usuario cuando se utiliza un tamaño grande, estableciendo una disposición en fila mediante flexbox. */
+.size-large .user-container {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Contenedor de información del usuario, con un margen a la derecha para separar la información de la imagen. */
+.info-container {
+  margin-right: 10px; /* Espacio entre la información del usuario y la imagen. */
+}
+
+/* Estilos para el nombre del usuario, aumentando el tamaño de la fuente y aplicando negrita. */
+.user-name {
+  font-size: 1.2rem; /* Tamaño de la fuente ajustable según necesidades. */
+  font-weight: bold;
+}
+
+/* Estilos para el título del usuario, con un tamaño de fuente ligeramente menor. */
+.user-title {
+  font-size: 0.9rem; /* Tamaño de la fuente ajustable según necesidades. */
+}
+
+/* Estilos para la imagen de perfil del usuario, configurada para ser circular y cubrir el espacio del contenedor. */
+.user-picture {
+  width: 48px; /* Ancho fijo de la imagen. */
+  height: 48px; /* Altura fija de la imagen. */
+  border-radius: 50%; /* Hace la imagen circular. */
+  background-size: cover;
+  position: relative; /* Necesario para posicionar absolutamente el badge dentro. */
+}
+
+/* Estilos base para el badge de estado, utilizando posición absoluta para colocarlo sobre la imagen de perfil. */
+.nb-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: blue; /* Color de fondo ajustable según el estado. */
+  color: white;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-size: 0.75rem; /* Tamaño de la fuente dentro del badge. */
+}
+
+/* Estilos adicionales para badges de estado primario, con colores y dimensiones específicas. */
+.status-primary {
+  color: #a3bd36 !important;
+  background-color: #a3bd36 !important;
+  border-radius: 50% !important;
+  width: 7px !important;
+  height: 13px !important;
+  border-color: #fff !important;
+}

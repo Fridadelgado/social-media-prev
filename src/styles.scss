@@ -1,0 +1,157 @@
+// Importación del archivo de temas personalizados. Asegúrate de que la ruta al archivo 'themes.scss' sea correcta.
+@use 'themes' as *;
+
+// Importación de los estilos globales del framework Nebular.
+@use '@nebular/theme/styles/globals' as *;
+
+// Instalación de los estilos del framework Nebular.
+@include nb-install() {
+  // Inclusión de los estilos globales del tema actual.
+  @include nb-theme-global();
+}
+
+
+.modal-publicacion-icono svg {
+  width: 25px !important;
+  height: 20px !important; /* Ajusta esta propiedad para mantener la proporción si es necesario */
+}
+
+.titulo-modal-publicacion-icono svg {
+  width: 40px !important;
+  height: 40px !important; /* Ajusta esta propiedad para mantener la proporción si es necesario */
+}
+
+.subtitulo-modal-publicacion-icono svg {
+  width: 25px !important;
+  height: 25px !important; /* Ajusta esta propiedad para mantener la proporción si es necesario */
+}
+
+
+.subtitulo-programar-modal-publicacion-icono svg {
+  width: 45px !important;
+  height: 35px !important; /* Ajusta esta propiedad para mantener la proporción si es necesario */
+  color: #002A7F !important
+}
+
+
+body{
+  text-align: left;
+  font: normal normal bold 24px/17px Montserrat;
+  letter-spacing: 0px;
+  color: #1E1E1E;
+  opacity: 1;
+}
+
+// Personalización de iconos dentro de nb-menu para tener dimensiones específicas y padding.
+nb-menu nb-icon svg {
+  width: 39px; // Ancho del icono.
+  height: 40px; // Altura del icono.
+  padding: 2px; // Espacio interior alrededor del icono.
+}
+
+// Estilos para iconos dentro de nb-menu al pasar el mouse (hover) o al estar enfocado (focus).
+nb-menu nb-icon:hover svg path,
+nb-menu nb-icon:focus svg path {
+  fill: #FFF !important; // Cambia el color de relleno a blanco. Reemplazar #FFF si se desea otro color.
+}
+
+// Personalización del margen y padding para los iconos de menú.
+nb-menu .menu-item .menu-icon {
+  margin-bottom: 20px; // Margen inferior.
+  margin-left: 8px; // Margen izquierdo.
+  padding: 1px; // Espacio interior alrededor del icono.
+}
+
+// Estilos específicos para el sidebar en su estado compactado.
+nb-sidebar.compacted nb-menu .menu-item a.active::before {
+  top: -2px;
+  height: 94%; // Altura del indicador de elemento activo.
+  width: 3px; // Ancho del indicador de elemento activo.
+  left: 2px !important; // Posicionamiento a la izquierda del indicador.
+}
+
+// Ajustes de posición para nb-sidebar fijo dentro de un contenedor de layout.
+.layout-container nb-sidebar.fixed,
+nb-layout .layout .layout-container nb-sidebar .main-container-fixed {
+  top: 156px; // Posiciona el sidebar fijo a 156px desde la parte superior del viewport.
+}
+
+// Personalización de badges (etiquetas) para indicar estados, en este caso, 'peligro'.
+nb-badge.status-danger {
+  border-radius: 50% !important; // Hace que el badge sea completamente circular.
+  width: 7px !important; // Ancho del badge.
+  height: 13px !important; // Altura del badge.
+  border-color: #fff !important; // Color del borde del badge.
+  left: 24px !important; // Posición desde la izquierda.
+  font-size: 10px !important; // Tamaño de la fuente dentro del badge.
+  align-items: center !important; // Centra el contenido verticalmente dentro del badge.
+  justify-content: center !important; // Centra el contenido horizontalmente dentro del badge.
+  display: flex !important; // Utiliza flexbox para el layout interno del badge.
+}
+
+
+/* styles.scss o styles.css */
+/* styles.scss o styles.css */
+.time-icons nb-icon svg path,
+.time-icons nb-icon svg text {
+  fill: #002a7f !important; /* Color por defecto */
+  transition: fill 0.3s ease !important; /* Transición suave para el cambio de color */
+}
+
+.time-icons nb-icon:hover svg path,
+.time-icons nb-icon:hover svg text {
+  fill: #A3BD36 !important; /* Color al hacer hover */
+}
+
+.time-icons nb-icon.icon-active svg path,
+.time-icons nb-icon.icon-active svg text {
+  fill: #A3BD36 !important; /* Color cuando el ícono está activo */
+}
+
+
+.filter-icons {
+  fill: #002a7f !important; /* Color por defecto */
+  transition: fill 0.3s ease !important; /* Transición suave para el cambio de color */
+}
+
+.filter-icons:hover,
+.filter-icons.icon-active {
+  fill: #A3BD36 !important; /* Color al hacer hover o estar activo */
+}
+
+
+button {
+  opacity: 1 !important;
+  border-radius: 10px !important;
+  text-transform: capitalize !important;
+  height: 32px !important;
+  padding: 5px !important;
+}
+
+input {
+  border-radius: 10px !important;
+  height: 30px !important;
+}
+
+textarea{
+  border-radius: 10px !important;
+}
+
+nb-card-footer {
+  border-top: 0 !important;
+}
+
+nb-card-header{
+  border-bottom: 0 !important;
+}
+
+.ngx-file-drop__drop-zone{
+  border: 2px dotted #C5C5C5 !important;
+}
+
+.social-icons-container .active {
+  fill: #002A7F !important; /* Color azul al seleccionar */
+}
+
+// Importa solo el sistema de cuadrícula de Bootstrap para su uso en el layout.
+@import 'node_modules/bootstrap/scss/bootstrap-grid.scss';

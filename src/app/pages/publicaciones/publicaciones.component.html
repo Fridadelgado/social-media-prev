@@ -1,0 +1,124 @@
+<!-- Botón para abrir un modal de creación de publicación -->
+<button nbButton hero status="primary" (click)="openModal()" class="d-flex align-items-center">
+  <nb-icon class="filter-icons me-2" icon="text-box-plus-outline-success" pack="seekop"></nb-icon>{{
+  'pages.publicaciones.botonCrearPublicacion' | translate }}
+</button>
+
+<!-- Mensaje cuando no hay publicaciones -->
+<div *ngIf="publicaciones.length === 0" class="row justify-content-center align-items-center" style="height: 300px;">
+  <div class="col-12 text-center mt-5">
+    <h4 class="mt-5">
+      <nb-icon icon="info-outline" pack="eva" style="font-size: 40px; color: #aaa; margin-right: 10px;"></nb-icon>
+      No hay datos que mostrar
+    </h4>
+    <p>Comienza creando tu primera publicación.</p>
+  </div>
+</div>
+
+<!-- Contenedor para las publicaciones -->
+<!-- Contenedor para las publicaciones -->
+<div class="row" *ngIf="publicaciones.length > 0">
+  <div class="col-12 col-md-6 col-lg-4 mt-3" *ngFor="let publicacion of publicaciones">
+    <nb-card>
+      <nb-card-header>
+        <div class="header-content d-flex align-items-center">
+          <h3 class="me-2">{{ 'pages.publicaciones.labelPublicadoEn' | translate }}</h3>
+          <nb-icon class="filter-icons me-4" *ngFor="let red of publicacion.redSocial" [icon]="getSocialMediaIcon(red)"
+            pack="seekop" (click)="cambiarVistaPrevia(red)">
+          </nb-icon>
+        </div>
+      </nb-card-header>
+
+      <nb-card-body>
+        <!-- Mostrar la vista previa correspondiente -->
+        <div [ngClass]="{
+        'facebook-preview': publicacion.redSocialPreviaSeleccionada === 'facebook',
+        'instagram-preview': publicacion.redSocialPreviaSeleccionada === 'instagram',
+        'tiktok-preview': publicacion.redSocialPreviaSeleccionada === 'tiktok',
+        'pinterest-preview': publicacion.redSocialPreviaSeleccionada === 'pinterest',
+        'youtube-preview': publicacion.redSocialPreviaSeleccionada === 'youtube',
+        'twitter-preview': publicacion.redSocialPreviaSeleccionada === 'twitter',
+        'linkedin-preview': publicacion.redSocialPreviaSeleccionada === 'linkedin',
+        'x-preview': publicacion.redSocialPreviaSeleccionada === 'x',
+        'mobile-preview-container': publicacion.vistaPrevia === 'mobile',
+        'desktop-preview-container': publicacion.vistaPrevia === 'desktop'
+      }" class="preview-container">
+
+          <!-- Vista previa de Facebook -->
+          <div *ngIf="publicacion.redSocialPreviaSeleccionada === 'facebook'">
+            <!-- Vista Facebook Post -->
+            <div *ngIf="publicacion.tipoPublicacion === 'post'" class="facebook-post-preview">
+              <div class="post-header">
+                <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Logo" class="post-logo">
+                <div>
+                  <strong>Dev-Seekop</strong>
+                  <p>21 August at 12:45 PM</p>
+                </div>
+              </div>
+              <div class="post-content">
+                <p>{{ publicacion.descripcion || 'Descripción de ejemplo...' }}</p>
+
+                <!-- Mostrar imagen o video si existe, de lo contrario mostrar la imagen predeterminada -->
+                <ng-container *ngIf="publicacion.imagen; else defaultImageTemplate">
+                  <ng-container *ngIf="isVideo(publicacion.imagen); else imageTemplate">
+                    <video [src]="publicacion.imagen" controls class="post-video"></video>
+                  </ng-container>
+                  <ng-template #imageTemplate>
+                    <img [src]="publicacion.imagen" alt="Post Image" class="post-image">
+                  </ng-template>
+                </ng-container>
+                <ng-template #defaultImageTemplate>
+                  <img [src]="publicacion.imagen" alt="Imagen por defecto" class="post-image">
+                </ng-template>
+              </div>
+            </div>
+          </div>
+
+          <!-- Similar para otras redes sociales -->
+          <ng-container *ngIf="publicacion.redSocialPreviaSeleccionada === 'instagram'">
+            <!-- Vista Instagram Post -->
+            <div *ngIf="publicacion.tipoPublicacion === 'post'" class="instagram-preview">
+              <div class="instagram-post-preview">
+                <div class="post-header">
+                  <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Profile Picture"
+                    class="post-logo">
+                  <div class="post-user-info">
+                    <strong>seekopimagine</strong>
+                    <p>Hace 1 hora</p>
+                  </div>
+                </div>
+                <div class="post-content">
+                  <img [src]="publicacion.imagen" alt="Instagram Post" class="post-image">
+                </div>
+                <div class="post-footer">
+                  <div class="icons">
+                    <nb-icon icon="heart-outline" pack="eva"></nb-icon>
+                    <nb-icon icon="message-circle-outline" pack="eva"></nb-icon>
+                    <nb-icon icon="paper-plane-outline" pack="eva"></nb-icon>
+                  </div>
+                  <div class="post-description">
+                    <strong>seekopimagine</strong> {{ publicacion.descripcion || 'Texto de ejemplo...' }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </nb-card-body>
+
+
+      <div class="row mt-3">
+        <div class="col-md-12">
+          <button nbButton outline status="primary" (click)="alternarVistaPrevia('desktop')">Vista Escritorio</button>
+          <button nbButton outline status="primary" (click)="alternarVistaPrevia('mobile')">Vista Móvil</button>
+        </div>
+      </div>
+
+
+      <nb-card-footer>
+        <a [href]="publicacion.link" target="_blank">Ver publicación</a>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>
+

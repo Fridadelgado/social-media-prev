@@ -1,0 +1,98 @@
+<!-- Contenedor principal del modal con un tamaño grande definido. -->
+<div class="modal-dialog modal-lg">
+  <!-- Tarjeta de Nebular que forma el cuerpo del modal, con fondo blanco. -->
+  <nb-card class="modal-publicacion row" style="background-color: #fff; padding: 10px; zoom: 81%;">
+
+    <!-- Cabecera de la tarjeta con el título del modal. -->
+    <nb-card-header class="mt-2 mb-2">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center">
+          <h1>Autenticación de Redes Sociales</h1>
+        </div>
+        <div class="col-md-4 text-right">
+          <nb-icon icon="close-outline" nbTooltip="Cerrar" pack="eva" (click)="closeModal()"></nb-icon>
+        </div>
+      </div>
+    </nb-card-header>
+
+    <!-- Cuerpo de la tarjeta organizado en una columna para entrada de datos. -->
+    <nb-card-body class="row">
+      <!-- Columna para la entrada de datos de la autenticación. -->
+      <div class="col-md-12">
+        <strong style="font-size: 20px;">
+          <nb-icon class="subtitulo-modal-publicacion-icono" style="margin-right: 20px; margin-bottom: 30px; margin-top: 10px;" icon="mdi-car" pack="seekop"></nb-icon>
+          Datos de Autenticación
+        </strong>
+        <div class="row">
+          <!-- Entrada para el email del usuario con validación. -->
+          <div class="col-md-12">
+            <label [ngClass]="{'text-danger': submitted && !email}">Email *</label>
+            <input fullWidth nbInput maxlength="50" placeholder="Ingresa tu email" [(ngModel)]="email" required class="form-control mb-4">
+          </div>
+
+          <!-- Selección de redes sociales con validación. -->
+          <div class="col-md-12">
+            <label [ngClass]="{'text-danger': submitted && !selectedRedSocial}">Selecciona Red Social *</label>
+            <nb-select fullWidth class="mb-4" placeholder="Selecciona Red Social" [(ngModel)]="selectedRedSocial" [disabled]="selectedRedSocial !== 0">
+              <nb-option *ngFor="let redSocial of redesSociales" [value]="redSocial.idred">
+                {{ redSocial.nombre }}
+              </nb-option>
+            </nb-select>
+          </div>
+
+          <!-- Selección de distribuidores con validación. -->
+          <div class="col-md-12">
+            <label [ngClass]="{'text-danger': submitted && !selectedDistribuidor}">Distribuidor *</label>
+            <nb-select fullWidth class="mb-4" placeholder="Selecciona Distribuidor" [(ngModel)]="selectedDistribuidor">
+              <nb-option *ngFor="let distribuidor of distribuidores" [value]="distribuidor.iddistribuidor">
+                {{ distribuidor.nombredistribuidor }}
+              </nb-option>
+            </nb-select>
+          </div>
+
+          <!-- Entrada para el nombre de la cuenta con validación. -->
+          <div class="col-md-12">
+            <label [ngClass]="{'text-danger': submitted && !nombreCuenta}">Nombre de la Cuenta *</label>
+            <input fullWidth nbInput maxlength="50" placeholder="Ingresa el nombre de la cuenta" [(ngModel)]="nombreCuenta" required class="form-control mb-4">
+          </div>
+
+          <!-- Mensaje de autenticación -->
+          <div *ngIf="alreadyAuthenticated" class="col-md-12">
+            <span style="color: red;">El usuario ya está autenticado.</span>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+
+    <!-- Pie de la tarjeta con botones para diversas acciones relacionadas con la autenticación. -->
+    <nb-card-footer>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-2" style="margin-right: -10px;">
+              <nb-icon class="col-md-1 modal-publicacion-icono" style="margin-right: 8px;" icon="mdi-alert-outline" pack="seekop"></nb-icon>
+            </div>
+            <div class="col-md-10" style="margin-left: -15px;">
+              <span style="font: italic normal normal 15px/20px Montserrat; color: #272D3B; opacity: 1; letter-spacing: 0px;">Los campos con un * son obligatorios</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-1">
+          <button nbButton hero status="primary" (click)="iniciarAutenticacion()" class="btn btn-primary " style="margin-left: -50px; padding: 10px !important;">
+            <nb-icon class="col-md-1 modal-publicacion-icono" style="margin-right: 8px;" icon="mdi-cloud-upload-outline" pack="seekop"></nb-icon>
+            Autenticar
+          </button>
+        </div>
+        <div class="col-md-1">
+          <button nbButton status="danger" (click)="cancelar()" class="btn btn-danger" style="margin-left: -30px; padding: 10px !important;">
+            <nb-icon class="col-md-1 modal-publicacion-icono" icon="close-circle-outline" pack="eva"></nb-icon>
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </nb-card-footer>
+  </nb-card>
+</div>

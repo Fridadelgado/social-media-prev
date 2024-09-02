@@ -1,0 +1,39 @@
+@import '../../components/modal-publicacion/modal-publicacion-general.component';
+@import '../../components/modal-publicacion/modal-publicacion-facebook.component.scss';
+@import '../../components/modal-publicacion/modal-publicacion-instagram.component.scss';
+@import '../../components/modal-publicacion/modal-publicacion-tiktok.component.scss';
+@import '../../components/modal-publicacion/modal-publicacion-youtube.component.scss';
+@import '../../components/modal-publicacion/modal-publicacion-linkedin.component.scss';
+@import '../../components/modal-publicacion/modal-publicacion-twitter-x.component.scss';
+
+.header-content .filter-icons {
+  margin-right: 10px; /* Ajusta el valor según sea necesario */
+  font-size: 24px; /* Asegúrate de que los iconos sean suficientemente grandes */
+}
+/* Estilos adicionales para las vistas previas */
+.preview-container {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.mobile-preview-container {
+  width: 320px;
+  height: auto;
+  border: 3px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 0 auto;
+}
+
+.desktop-preview-container {
+  width: 600px;
+  height: auto;
+  border: 3px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Añadir más estilos según sea necesario para cada red social */

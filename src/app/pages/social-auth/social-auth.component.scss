@@ -1,0 +1,52 @@
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.nb-card-body .d-flex {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nb-card-body .d-flex .nbButton {
+  align-self: flex-end;
+}
+
+.nb-card {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  border-radius: 10px; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  padding: 15px; 
+}
+.nb-card-header {
+  padding: 10px;
+}
+
+.nb-card-body {
+  padding: 10px; 
+}
+
+.nb-card:hover {
+  transform: translate(4px, 4px); 
+}
+
+.nb-card .nbButton {
+  font-size: 0.875rem; 
+  padding: 5px 10px; 
+}
+
+.facebook:hover,
+.youtube:hover,
+.tiktok:hover,
+.pinterest:hover,
+.mercadolibre:hover,
+.meta:hover,
+.twitter:hover,
+.linkedin:hover {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  transform: translate(4px, 4px);
+  color: black;
+}

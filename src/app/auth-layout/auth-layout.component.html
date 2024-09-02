@@ -1,0 +1,48 @@
+<!-- nb-layout es el contenedor principal que define el diseño de la página. -->
+<nb-layout>
+  <!-- nb-layout-header define la cabecera de la página. 'subheader' puede ser utilizado para un estilo diferenciado si se desea. -->
+  <nb-layout-header subheader>
+    <!-- Se muestra un logo que cambia según el estado de la barra lateral (colapsada o expandida). -->
+    <img [src]="isCollapsed ? logoUrl2 : logoUrl"
+         [class.logo-image-expanded]="!isCollapsed"
+         [class.logo-image-collapsed]="isCollapsed" class="logo-image" />
+    <!-- Este botón comentado podría usarse para alternar la barra lateral. -->
+    <!-- <button nbButton (click)="toggleSidebar()">
+      <nb-icon icon="menu-2-outline"></nb-icon>
+    </button> -->
+    <div class="container-fluid">
+      <div class="row justify-content-end">
+
+        <!-- nb-select se utiliza aquí para un selector de idiomas con opciones dinámicas basadas en un arreglo. -->
+        <div class="col-md-6">
+          <nb-select placeholder="Select Language" [(ngModel)]="selectedLanguage" (selectedChange)="changeLanguage()">
+            <nb-option *ngFor="let lang of ['es', 'en']" [value]="lang">
+              {{ languageNames[lang] }}
+            </nb-option>
+          </nb-select>
+        </div>
+
+        <!-- Espacio reservado para componentes de acciones y avatar del usuario. -->
+        <div class="col-md-4 d-flex justify-content-end mt-3">
+          <app-actions></app-actions> <!-- Componente personalizado para acciones. -->
+        </div>
+        <div class="col-md-2">
+          <app-user-avatar></app-user-avatar> <!-- Componente personalizado para el avatar del usuario. -->
+        </div>
+      </div>
+    </div>
+  </nb-layout-header>
+
+  <!-- nb-sidebar define la barra lateral que puede alternar entre estados 'compacted' y 'expanded'. -->
+  <nb-sidebar [state]="isCollapsed ? 'compacted' : 'expanded'" style="margin-top: -60px; width: 80px;">
+
+    <app-menu-list></app-menu-list> <!-- Componente personalizado para la lista del menú. -->
+
+  </nb-sidebar>
+
+  <!-- nb-layout-column define el área principal de contenido donde se renderizarán los componentes de ruta. -->
+  <nb-layout-column>
+
+    <router-outlet></router-outlet> <!-- Angular Router Outlet para contenido dinámico basado en la ruta. -->
+  </nb-layout-column>
+</nb-layout>

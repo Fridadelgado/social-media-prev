@@ -1,0 +1,27 @@
+/* Ajustes generales para el sidebar */
+.nb-sidebar {
+  position: relative; /* Establece el posicionamiento relativo como base para posicionar absolutamente elementos internos si es necesario. */
+  /* Aquí puedes añadir más estilos generales para el sidebar, como colores de fondo, anchura, etc. */
+}
+
+/* Estilos comunes para la imagen del logo */
+.logo-image {
+  display: block; /* Elimina cualquier espacio extra alrededor de la imagen, que podría aparecer con el valor predeterminado de display: inline; */
+  height: auto; /* Asegura que la altura de la imagen se ajuste automáticamente para mantener la proporción, basada en el ancho. */
+  transition: width 0.5s; /* Añade una transición suave para los cambios de ancho, creando un efecto visual agradable cuando el sidebar se expande o colapsa. */
+  position: fixed; /* Posiciona fijamente la imagen del logo respecto al viewport, lo que permite que permanezca visible incluso al desplazarse. */
+}
+
+/* Estilos específicos cuando el sidebar está expandido */
+.logo-image-expanded {
+  width: 243px; /* Establece el ancho de la imagen del logo cuando el sidebar está expandido. */
+  margin-left: -270px; /* Ajusta la posición horizontal de la imagen para alinearla adecuadamente dentro del sidebar expandido. */
+  margin-top: 1%; /* Ajusta el margen superior para posicionar correctamente la imagen en el sidebar expandido. */
+}
+
+/* Estilos específicos cuando el sidebar está compactado */
+.logo-image-collapsed {
+  width: 65px; /* Ajusta el ancho de la imagen del logo para coincidir con el ancho del sidebar compactado. */
+  margin-left: -92px; /* Ajusta la posición horizontal de la imagen para alinearla dentro del sidebar compactado. */
+  margin-top: 3px; /* Ajusta el margen superior para posicionar correctamente la imagen en el sidebar compactado. */
+}

@@ -1,0 +1,93 @@
+<div class="modal-dialog modal-lg">
+  <!-- Tarjeta de Nebular que forma el cuerpo del modal, con fondo blanco. -->
+  <nb-card class="modal-publicacion row" style="background-color: #fff; padding: 10px; zoom: 81%;">
+    <!-- Cabecera de la tarjeta con el título del modal, internacionalizado. -->
+    <nb-card-header class="mt-2 mb-2">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-1 ">
+          <nb-icon class="titulo-modal-publicacion-icono" icon="mdi-contact-info" pack="seekop"></nb-icon>
+        </div>
+        <div class="col-md-6" style="margin-left: -30px;">
+          <h1> {{ 'components.modal-publicacion.labelCrearPublicacion' | translate }}</h1>
+        </div>
+
+        <div class="col-md-1" style="text-align: right;">
+          <nb-icon icon="close-outline" nbTooltip="Cerrar" pack="eva" (click)="closeModal()"></nb-icon>
+        </div>
+      </div>
+    </nb-card-header>
+
+    <!-- Cuerpo de la tarjeta organizado en dos columnas para entrada de datos y previsualización. -->
+    <div class="row">
+      <div class="col-md-12">
+        <label>Publicar en *</label>
+        <nb-select fullWidth class="mb-4" (selectedChange)="onRedSocialChange($event)"
+          placeholder="{{'components.modal-publicacion.placeHolderSeleccionaRedSocial' | translate}}" multiple>
+          <nb-option *ngFor="let redSocial of redesSociales" [value]="redSocial.nombre">
+            {{ redSocial.nombre }}
+          </nb-option>
+        </nb-select>
+      </div>
+      <nb-accordion>
+        <nb-accordion-item *ngFor="let redSocial of root.selectedRedesSociales">
+          <nb-accordion-item-header>
+            <nb-icon class="col-md-2 filter-icons icon-hover" [icon]="redSocial.nombreRedSocial.toLowerCase() + '-icon'"
+              pack="seekop"></nb-icon>
+            <span>{{ redSocial.nombreRedSocial }}</span>
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="row">
+              <div class="col-md-6">
+                <strong style="font-size: 20px;">
+                  <nb-icon class="subtitulo-modal-publicacion-icono"
+                    style="margin-right: 20px; margin-bottom: 30px; margin-top: 10px;" icon="mdi-car"
+                    pack="seekop"></nb-icon>
+                  Datos de la publicación
+                </strong>
+                <app-generic-form-red-social [config]="redSocial"></app-generic-form-red-social>
+                <div class="row">
+                  <div class="col-md-2" style="margin-right: -10px;">
+                    <nb-icon class="col-md-1 modal-publicacion-icono" style="margin-right: 8px;"
+                      icon="mdi-alert-outline" pack="seekop"></nb-icon>
+                  </div>
+                  <div class="col-md-10" style="margin-left: -15px;">
+                    <span
+                      style="font: italic normal normal 15px/20px Montserrat; color: #272D3B; opacity: 1; letter-spacing: 0px;">Los
+                      campos con un * son obligatorios</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <strong style="font-size: 20px;">
+                  <nb-icon class="subtitulo-modal-publicacion-icono"
+                    style="color: #002A7F; margin-right: 20px; margin-bottom: 30px; margin-top: 10px;"
+                    icon="eye-outline" pack="eva"></nb-icon>
+                  {{ 'components.modal-publicacion.labelPrevisualizacion' | translate }}
+                </strong>
+                <app-generic-prev-publicacion></app-generic-prev-publicacion>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+
+    </div>
+
+    <!-- Pie de la tarjeta con botones para diversas acciones relacionadas con la publicación. -->
+    <nb-card-footer class="d-flex justify-content-end" *ngIf="root.selectedRedesSociales.length > 0">
+      <button nbButton hero status="primary" class="btn btn-primary mx-2" style="padding: 10px !important;"
+      
+      (click)="onSubmit()">
+        <nb-icon class="col-md-1 modal-publicacion-icono" style="margin-right: 8px;" icon="mdi-cloud-upload-outline" pack="seekop"></nb-icon>
+        {{ 'components.modal-publicacion.botonPublicar' | translate }}
+      </button>
+    
+      <button nbButton status="danger" (click)="closeModal()" class="btn btn-danger mx-2" style="padding: 10px !important;">
+        <nb-icon class="col-md-1 modal-publicacion-icono" icon="close-circle-outline" pack="eva"></nb-icon>
+        {{ 'components.modal-publicacion.botonCancelar' | translate }}
+      </button>
+    </nb-card-footer>
+    
+  </nb-card>
+</div>
