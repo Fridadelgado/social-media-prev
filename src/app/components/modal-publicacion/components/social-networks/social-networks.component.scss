@@ -1,0 +1,32 @@
+/* Estilos adicionales para la visualización de los iconos de redes sociales */
+.social-icons-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px; /* Añadir espacio entre los iconos */
+  margin-bottom: 30px;
+}
+
+.social-icon {
+  position: relative;
+  cursor: pointer; /* Asegurarse de que el cursor cambie a pointer */
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width:600px) {
+  .social-icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .social-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Ensure this is set for each social icon */
+    flex-basis: calc(100% / 5); /* Adjust as needed for desired columns */
+    max-width: 100%;
+  }
+}

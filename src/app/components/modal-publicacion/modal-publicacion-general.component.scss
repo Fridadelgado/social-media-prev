@@ -1,3 +1,8 @@
+/* Estilo para el titulo, se genera para mejorar el responsive */
+.title{
+  display: flex;
+}
+
 /* Estilos para imágenes de previsualización en el modal. Se asegura de que las imágenes se ajusten adecuadamente sin sobrepasar su contenedor. */
 .img-previsualizacion {
   width: 350px;
@@ -43,20 +48,6 @@
   outline: none;
   font-size: inherit;
   width: calc(100% - 50px);
-}
-
-/* Estilos adicionales para la visualización de los iconos de redes sociales */
-.social-icons-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px; /* Añadir espacio entre los iconos */
-}
-
-.social-icon {
-  position: relative;
-  cursor: pointer; /* Asegurarse de que el cursor cambie a pointer */
-  display: flex;
-  align-items: center;
 }
 
 /* Contenedor para los menús desplegables */
@@ -166,76 +157,20 @@ nb-select-placeholder {
   display: none; /* Elimina la flecha negra del select */
 }
 
-/* Contenedor general para la vista previa */
-.preview-container {
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #fff;
-}
 
-/* Contenedor para la previsualización móvil */
-.mobile-preview-container {
-  width: 320px; /* Ancho típico de móvil */
-  height: auto; /* Ajusta automáticamente la altura */
-  border: 3px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 0 auto;
-}
 
-/* Contenedor para la previsualización de escritorio */
-.desktop-preview-container {
-  width: 600px; /* Ajuste para mantener la proporción de la vista de escritorio */
-  height: auto;
-  border: 3px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-/* Estilos para la imagen/video en la previsualización móvil */
-.preview-image,
-.preview-video {
-  width: 100%;
-  height: auto;
-  max-height: 200px; /* Ajustamos la altura máxima para que no se salga del contenedor */
-  object-fit: contain; /* Mantener las proporciones */
-  display: block;
-  margin-bottom: 10px;
-}
-
-/* Estilos para el título y la descripción */
-.preview-title {
-  font-size: 16px; /* Ajuste del tamaño de fuente */
-  font-weight: bold;
-  margin: 10px;
-  text-align: center; /* Centra el texto */
-}
-
-.preview-description {
-  font-size: 14px;
-  padding: 0 10px;
-  text-align: center;
-}
-
-/* Estilos para la vista previa predeterminada */
-.default-preview {
-  border: 3px dashed #ccc; /* Un borde diferente para indicar que es el estado predeterminado */
-}
-
-.default-post-preview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 20px;
-  text-align: center;
-}
-
-.default-post-preview .preview-description {
-  font-size: 16px;
-  color: #777;
-  margin-bottom: 20px;
+@media screen and (max-width:600px) {
+  .modal-publicacion {
+    width: 100% !important;
+    height: 100vh;
+    max-height: 98%;
+    overflow-y: auto;
+  }
+  .title{
+    gap: 1rem;
+  }
+  h1{
+    margin-left: 0.5rem !important;
+    font-size: x-large;
+  }
 }

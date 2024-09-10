@@ -1,10 +1,10 @@
 @import '../../components/modal-publicacion/modal-publicacion-general.component';
-@import '../../components/modal-publicacion/modal-publicacion-facebook.component.scss';
-@import '../../components/modal-publicacion/modal-publicacion-instagram.component.scss';
-@import '../../components/modal-publicacion/modal-publicacion-tiktok.component.scss';
-@import '../../components/modal-publicacion/modal-publicacion-youtube.component.scss';
-@import '../../components/modal-publicacion/modal-publicacion-linkedin.component.scss';
-@import '../../components/modal-publicacion/modal-publicacion-twitter-x.component.scss';
+@import '../../components/modal-publicacion/components/vista-previa/cssPersonalizado/modal-publicacion-facebook.component';
+@import '../../components/modal-publicacion/components/vista-previa/cssPersonalizado/modal-publicacion-instagram.component';
+@import '../../components/modal-publicacion/components/vista-previa/cssPersonalizado/modal-publicacion-tiktok.component';
+@import '../../components/modal-publicacion/components/vista-previa/cssPersonalizado/modal-publicacion-youtube.component';
+@import '../../components/modal-publicacion/components/vista-previa/cssPersonalizado/modal-publicacion-linkedin.component';
+@import '../../components/modal-publicacion/components/vista-previa/cssPersonalizado/modal-publicacion-twitter-x.component';
 
 .header-content .filter-icons {
   margin-right: 10px; /* Ajusta el valor según sea necesario */

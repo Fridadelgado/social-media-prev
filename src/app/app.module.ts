@@ -29,6 +29,7 @@ import { NgxFileDropModule } from 'ngx-file-drop';
 
 // loader
 import { BodyLoadingComponent } from './components/body-loading/body-loading.component';
+import {ModalPublicacionModule} from "./components/modal-publicacion/modal-publicacion.module";
 import { DynamicComponentService } from './services/dynamic-component-service.service';
 
 
@@ -124,7 +125,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NbToggleModule,
     NbSidebarModule.forRoot(),
     NbButtonModule,
-    NbThemeModule.forRoot({ name: 'seekop' }),
+    NbThemeModule.forRoot({name: 'seekop'}),
     NbEvaIconsModule,
     NbIconModule,
     NbActionsModule,
@@ -143,8 +144,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     NgApexchartsModule,
 
 
-
-
     NbAuthModule.forRoot({
       strategies: [
         NbDummyAuthStrategy.setup({
@@ -160,7 +159,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    ModalPublicacionModule
   ],
   providers: [
     DynamicComponentService
