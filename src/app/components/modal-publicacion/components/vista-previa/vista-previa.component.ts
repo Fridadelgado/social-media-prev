@@ -19,11 +19,12 @@ export class VistaPreviaComponent{
   @Input() publicacion!: Publicacion;
   @Input() fileType!: string;
   @Input() redSocialPreviaSeleccionada: string = ''; // Red social seleccionada para la previsualización
-  @Input() imagenPrevisualizacion: string | ArrayBuffer | null = '';
+  @Input() imagenPrevisualizacion!: string | ArrayBuffer | null;
   @Output() emitAlternarVista = new EventEmitter<'desktop'|'mobile'>();
 
   vistaPrevia: 'desktop' | 'mobile' = 'desktop'; // Vista previa actual, ya sea desktop o mobile
   defaultPreviewImage: string = '../../../assets/images/defaultcar.png';
+
 
   publicacionDefault = {
     titulo: 'Título Predeterminado',
@@ -34,22 +35,4 @@ export class VistaPreviaComponent{
   alternarVistaPrevia(vista: 'desktop' | 'mobile'): void {
     this.emitAlternarVista.emit(vista);
   }
-
-  // Método opcional para personalizar aún más el estilo de la previsualización
-  updatePreviewStyle(): void {
-    switch (this.redSocialPreviaSeleccionada.toLowerCase()) {
-      case 'facebook':
-        // Lógica adicional para Facebook
-        break;
-      case 'instagram':
-        // Lógica adicional para Instagram
-        break;
-      case 'twitter':
-        // Lógica adicional para Twitter
-        break;
-      // Otros casos para diferentes redes sociales
-    }
-  }
-
-
 }

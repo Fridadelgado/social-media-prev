@@ -1,5 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Publicacion} from "../../../../services/publicaciones.service";
+import {FileSelectInterface} from "../../interfaces/file-select.interface";
 
 @Component({
   selector: 'modal-publicacion-acordeon',
@@ -8,7 +9,7 @@ import {Publicacion} from "../../../../services/publicaciones.service";
 })
 export class AcordeonComponent {
   @Input() publicacion!: Publicacion;
-
+  @Output() emitFileSelectEvent:EventEmitter<FileSelectInterface> = new EventEmitter<FileSelectInterface>();
 tipoPubliacion = {
   'enlace': '',
   'ubicacion': '',
@@ -18,6 +19,7 @@ tipoPubliacion = {
 
 
   onFileSelect(event: any, type: string = 'imagen') {
-
+    const fileSelectInterface: FileSelectInterface = { event, type };
+    this.emitFileSelectEvent.emit(fileSelectInterface)
   }
 }

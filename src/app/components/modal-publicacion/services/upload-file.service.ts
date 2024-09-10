@@ -92,21 +92,24 @@ export class UploadFileService {
     }
   }
 
-  processFile(file: File, type: string): FileReader {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (!reader.result) {
-        console.error('Error al leer el archivo');
-        throw new Error('Error al leer el archivo');
-      }
-    };
 
-    reader.onerror = (error) => {
-      console.error('Error al cargar el archivo: ', error);
-    };
+  processFile(file: File, type: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
 
-    reader.readAsDataURL(file);
-    return reader;
+      reader.onload = () => {
+        if (!reader.result) {
+          reject('Error al leer el archivo');
+        }
+        resolve(reader.result);
+      };
+
+      reader.onerror = (error) => {
+        reject('Error al cargar el archivo: ' + error);
+      };
+
+      reader.readAsDataURL(file);
+    });
   }
 
 }

@@ -11,11 +11,11 @@ export class SocialNetworksComponent {
   @Input() submitted!: boolean;
   @Input() redesSociales!: any[];
   @Input() publicacion!: Publicacion;
+  @Input() selectedSocialMedia: string[] = [];
 
   @Output() emitSelectedSocialMedia:EventEmitter<void> = new EventEmitter<void>();
   @Output() emitSelectTipoPublicacion:EventEmitter<TipoPublicacionInterface> = new EventEmitter<TipoPublicacionInterface>();
 
-  selectedSocialMedia: string[] = [];
 
   toggleRedSocial(nombre: string): void {
     const lowerCaseName = nombre.toLowerCase();
@@ -27,6 +27,7 @@ export class SocialNetworksComponent {
       this.publicacion.redSocial.push(nombre);
       this.selectedSocialMedia.push(nombre);
     }
+
     this.emitSelectedSocialMedia.emit()
   }
 

@@ -29,6 +29,7 @@
             [submitted]="submitted"
             [publicacion]="publicacion"
             [redesSociales]="redesSociales"
+            [selectedSocialMedia]="selectedSocialMedia"
             (emitSelectedSocialMedia)="toggleRedSocial()"
             (emitSelectTipoPublicacion)="selectTipoPublicacion($event)"
             />
@@ -37,6 +38,10 @@
             [publicacion]="publicacion"
             [redesSociales]="redesSociales"
             [campanias]="campanias"
+            [imagenPrevisualizacion]="imagenPrevisualizacion"
+            [isValidFile]="isValidFile"
+            [dropZoneMessage]="dropZoneMessage"
+            (emitFileSelectEvent)="selectFileEvent($event)"
           />
         </div>
 
@@ -91,13 +96,6 @@
             [imagenPrevisualizacion]="imagenPrevisualizacion"
             (emitAlternarVista)="alternarVistaPrevia($event)" />
 
-        </div>
-
-        <div class="row mt-3">
-          <div class="col-md-12">
-            <button nbButton outline status="primary" (click)="alternarVistaPrevia('desktop')">Vista Escritorio</button>
-            <button nbButton outline status="primary" (click)="alternarVistaPrevia('mobile')">Vista Móvil</button>
-          </div>
         </div>
       </div>
 

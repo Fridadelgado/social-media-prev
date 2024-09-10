@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {FileSystemFileEntry, NgxFileDropEntry} from "ngx-file-drop";
 import {Campanias, CampaniasBody, GenericResponse} from "../../../../interfaces/campanias.interface";
 import {Publicacion, PublicacionesService} from "../../../../services/publicaciones.service";
+import {FileSelectInterface} from "../../interfaces/file-select.interface";
 import {UploadFileService} from "../../services/upload-file.service";
 
 @Component({
@@ -15,7 +16,11 @@ export class MainFormComponent implements OnInit{
   @Input() redesSociales!: any[];
   @Input() publicacion!: Publicacion;
   @Input() campanias!: Campanias[];
+  @Input() imagenPrevisualizacion: string | ArrayBuffer | null = '';
+  @Input() isValidFile!: boolean;
+  @Input() dropZoneMessage!: string;
 
+  @Output() emitFileSelectEvent:EventEmitter<FileSelectInterface> = new EventEmitter<FileSelectInterface>();
   constructor(
     private translate: TranslateService,
     private publicacionesService: PublicacionesService,
@@ -25,15 +30,11 @@ export class MainFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCampanias();
-    this.translate.get('components.modal-publicacion.dropZoneDefault').subscribe((res: string) => {
-      this.dropZoneMessage = res;
-    });
+
   }
 
-  isValidFile: boolean = false;
-  dropZoneMessage: string = "";
+
   fileType: string = "";
-  imagenPrevisualizacion: string | ArrayBuffer | null = '';
 
   updateDropZoneMessage(event: string[]): void {
     const selectedRedSocialName = event[0];
@@ -58,55 +59,32 @@ export class MainFormComponent implements OnInit{
   }
 
   onFileDrop(files: NgxFileDropEntry[]): void {
-    this.submitted = true;
+    //this.submitted = true;
     for (const droppedFile of files) {
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
-          this.uploadFileService.processFile(file, 'imagen'); // Proporciona un tipo predeterminado
+          //this.uploadFileService.processFile(file, 'imagen'); // Proporciona un tipo predeterminado
+          this.onFileSelect(file, 'image');
         });
         break;
       }
     }
-    this.isValidFile = this.uploadFileService.validateFile(files[0].fileEntry.name);
-    if (this.isValidFile) {
-      this.translate.get('components.modal-publicacion.dropZoneSuccess').subscribe((res: string) => {
-        this.dropZoneMessage = res;
-      });
-    } else {
-      this.translate.get('components.modal-publicacion.dropZoneValidacion').subscribe((res: string) => {
-        this.dropZoneMessage = res;
-      });
-    }
+    //this.isValidFile = this.uploadFileService.validateFile(files[0].fileEntry.name);
+    // if (this.isValidFile) {
+    //   this.translate.get('components.modal-publicacion.dropZoneSuccess').subscribe((res: string) => {
+    //     this.dropZoneMessage = res;
+    //   });
+    // } else {
+    //   this.translate.get('components.modal-publicacion.dropZoneValidacion').subscribe((res: string) => {
+    //     this.dropZoneMessage = res;
+    //   });
+    // }
   }
 
   onFileSelect(event: any, type: string = 'imagen'): void {
-    const file = event.target.files[0];
-    if (file) {
-      this.submitted = true;
-      this.isValidFile = this.uploadFileService.validateFile(file.name);
-
-      this.uploadFileService.onFileSelect(this.isValidFile).subscribe((res: string) => {
-        this.dropZoneMessage = res;
-      });
-
-      if (this.isValidFile) {
-        let reader: FileReader = this.uploadFileService.processFile(file, type);
-        if(reader.result){
-          this.fileType = this.uploadFileService.detectFileType(reader.result);
-          if (type === 'miniatura') {
-
-            this.publicacion.miniatura = reader.result.toString();
-          } else if (type === 'subtitulos') {
-            this.publicacion.subtitulos = reader.result.toString();
-          } else {
-            this.publicacion.imagen = reader.result.toString();
-            this.publicacion.video = reader.result.toString();
-            this.imagenPrevisualizacion = reader.result;
-          }
-        }
-      }
-    }
+    const fileSelectInterface: FileSelectInterface = { event, type };
+    this.emitFileSelectEvent.emit(fileSelectInterface)
   }
 
 

@@ -6,6 +6,7 @@ import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
 import { Campanias, CampaniasBody, GenericResponse } from 'src/app/interfaces/campanias.interface';
 import { DynamicComponentService } from '../../services/dynamic-component-service.service';
 import { ResponseRedesSociales } from 'src/app/interfaces/redes-sociales.interface';
+import {FileSelectInterface} from "./interfaces/file-select.interface";
 import {TipoPublicacionInterface} from "./interfaces/tipo-publicacion.interface";
 import {UploadFileService} from "./services/upload-file.service";
 
@@ -26,7 +27,7 @@ export class ModalPublicacionComponent {
   selectedSocialMedia: string[] = []; // Agregado para controlar las redes sociales seleccionadas
   redSocialPreviaSeleccionada : string = ""
 
-    publicacion: Publicacion = {
+  publicacion: Publicacion = {
     redSocial: [],
     titulo: '',
     descripcion: '',
@@ -66,6 +67,8 @@ export class ModalPublicacionComponent {
   imagenPrevisualizacion: string | ArrayBuffer | null = '';
   submitted = false;
   minDate: Date;
+  isValidFile: boolean = false;
+  dropZoneMessage: string = "";
 
   constructor(
     protected ref: NbDialogRef<ModalPublicacionComponent>,
@@ -81,6 +84,9 @@ export class ModalPublicacionComponent {
 
   ngOnInit(): void {
     this.loadRedesSociales();
+    this.translate.get('components.modal-publicacion.dropZoneDefault').subscribe((res: string) => {
+      this.dropZoneMessage = res;
+    });
   }
 
   esFechaValida(): boolean {
@@ -216,5 +222,53 @@ export class ModalPublicacionComponent {
         break;
       // Otros casos para diferentes redes sociales
     }
+  }
+
+  actualizarPrevisualizaciom(prevImg: any) {
+    this.imagenPrevisualizacion = prevImg;
+    this.cdr.detectChanges();
+  }
+
+  actualizarFileType(filetype: string) {
+    this.fileType = filetype;
+  }
+
+
+  onFileSelect(event: any, type: string = 'imagen'): void {
+    const file = event.target.files[0];
+    if (file) {
+      this.submitted = true;
+      this.isValidFile = this.uploadFileService.validateFile(file.name);
+
+      this.uploadFileService.onFileSelect(this.isValidFile).subscribe((res: string) => {
+        this.dropZoneMessage = res;
+      });
+
+      if (this.isValidFile) {
+        this.uploadFileService.processFile(file, type)
+          .then(reader => {
+            if(reader){
+              this.fileType = this.uploadFileService.detectFileType(reader);
+
+              if (type === 'miniatura') {
+                this.publicacion.miniatura = reader.toString();
+              } else if (type === 'subtitulos') {
+                this.publicacion.subtitulos = reader.toString();
+              } else {
+                this.publicacion.imagen = reader.toString();
+                this.publicacion.video = reader.toString();
+                this.imagenPrevisualizacion = reader;
+              }
+            }
+          })
+          .catch(error => {
+            console.error(error);
+          })
+      }
+    }
+  }
+
+  selectFileEvent(fileSelectInterface: FileSelectInterface) {
+    this.onFileSelect(fileSelectInterface.event, fileSelectInterface.type);
   }
 }

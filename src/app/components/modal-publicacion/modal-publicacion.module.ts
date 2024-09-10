@@ -1,7 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
-import {NbAccordionModule, NbIconModule, NbInputModule, NbOptionModule, NbSelectModule} from "@nebular/theme";
+import {
+  NbAccordionModule,
+  NbButtonModule,
+  NbIconModule,
+  NbInputModule,
+  NbOptionModule,
+  NbSelectModule
+} from "@nebular/theme";
 import {TranslateModule} from "@ngx-translate/core";
 import {NgxFileDropModule} from "ngx-file-drop";
 import { SocialNetworksComponent } from './components/social-networks/social-networks.component';
@@ -26,6 +33,7 @@ import { VistaPreviaComponent } from './components/vista-previa/vista-previa.com
     NgxFileDropModule,
     TranslateModule,
     NbAccordionModule,
+    NbButtonModule,
   ],
   exports: [
     SocialNetworksComponent,
