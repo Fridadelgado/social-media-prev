@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import {FileSystemFileEntry, NgxFileDropEntry} from "ngx-file-drop";
+import {Observable} from "rxjs";
+
 
 @Injectable({
   providedIn: 'root'
@@ -68,12 +70,10 @@ export class UploadFileService {
     }
   }
 
-   onFileSelect(isValidFile: boolean): any  {
-      const translationKey = this.isValidFile ? 'components.modal-publicacion.dropZoneSuccess' : 'components.modal-publicacion.dropZoneValidacion';
+   onFileSelect(isValidFile: boolean): Observable<string>  {
+      const translationKey = isValidFile ? 'components.modal-publicacion.dropZoneSuccess' : 'components.modal-publicacion.dropZoneValidacion';
 
-      return this.translate.get(translationKey).subscribe((res: string) => {
-        this.dropZoneMessage = res;
-      });
+      return this.translate.get(translationKey);
   }
 
   validateFile(fileName: string): boolean {
@@ -92,27 +92,12 @@ export class UploadFileService {
     }
   }
 
-  processFile(file: File, type: string): void {
+  processFile(file: File, type: string): FileReader {
     const reader = new FileReader();
     reader.onload = () => {
-      if (reader.result) {
-
-        switch (type){
-          case 'miniatura':
-        }
-
-        // this.detectFileType(reader.result);
-        // if (type === 'miniatura') {
-        //   this.publicacion.miniatura = reader.result.toString();
-        // } else if (type === 'subtitulos') {
-        //   this.publicacion.subtitulos = reader.result.toString();
-        // } else {
-        //   this.publicacion.imagen = reader.result.toString();
-        //   this.publicacion.video = reader.result.toString();
-        //   this.imagenPrevisualizacion = reader.result;
-        // }
-      } else {
+      if (!reader.result) {
         console.error('Error al leer el archivo');
+        throw new Error('Error al leer el archivo');
       }
     };
 
@@ -121,6 +106,7 @@ export class UploadFileService {
     };
 
     reader.readAsDataURL(file);
+    return reader;
   }
 
 }

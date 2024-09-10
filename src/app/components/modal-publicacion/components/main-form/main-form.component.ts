@@ -31,9 +31,6 @@ export class MainFormComponent implements OnInit{
   }
 
   isValidFile: boolean = false;
-  tipoArchivo: string = '';
-  imageExtensions = /\.(jpg|jpeg|png|gif|bmp)$/i;
-  videoExtensions = /\.(mp4|avi|mov|mkv|flv|wmv)$/i;
   dropZoneMessage: string = "";
   fileType: string = "";
   imagenPrevisualizacion: string | ArrayBuffer | null = '';
@@ -66,12 +63,12 @@ export class MainFormComponent implements OnInit{
       if (droppedFile.fileEntry.isFile) {
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
-          this.processFile(file, 'imagen'); // Proporciona un tipo predeterminado
+          this.uploadFileService.processFile(file, 'imagen'); // Proporciona un tipo predeterminado
         });
         break;
       }
     }
-    this.isValidFile = this.validateFile(files[0].fileEntry.name);
+    this.isValidFile = this.uploadFileService.validateFile(files[0].fileEntry.name);
     if (this.isValidFile) {
       this.translate.get('components.modal-publicacion.dropZoneSuccess').subscribe((res: string) => {
         this.dropZoneMessage = res;
@@ -88,55 +85,30 @@ export class MainFormComponent implements OnInit{
     if (file) {
       this.submitted = true;
       this.isValidFile = this.uploadFileService.validateFile(file.name);
-      this.dropZoneMessage = this.uploadFileService.onFileSelect(this.isValidFile);
+
+      this.uploadFileService.onFileSelect(this.isValidFile).subscribe((res: string) => {
+        this.dropZoneMessage = res;
+      });
 
       if (this.isValidFile) {
-        this.uploadFileService.processFile(file, type);
-      }
-    }
-  }
+        let reader: FileReader = this.uploadFileService.processFile(file, type);
+        if(reader.result){
+          this.fileType = this.uploadFileService.detectFileType(reader.result);
+          if (type === 'miniatura') {
 
-  validateFile(fileName: string): boolean {
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.bmp|\.mp4|\.avi|\.mov|\.mkv|\.flv|\.wmv)$/i;
-    return allowedExtensions.exec(fileName) ? true : false;
-  }
-
-  detectFileType(dataUri: string | ArrayBuffer): string {
-    const fileTypeRegex = /^data:(image|video)\/([a-zA-Z0-9]+);base64,/;
-    const match = dataUri.toString().match(fileTypeRegex);
-    if (match) {
-      this.fileType = match[1];
-      return this.fileType;
-    } else {
-      return 'unknown';
-    }
-  }
-
-  processFile(file: File, type: string): void {
-    const reader = new FileReader();
-    reader.onload = () => {
-      if (reader.result) {
-        this.detectFileType(reader.result);
-        if (type === 'miniatura') {
-          this.publicacion.miniatura = reader.result.toString();
-        } else if (type === 'subtitulos') {
-          this.publicacion.subtitulos = reader.result.toString();
-        } else {
-          this.publicacion.imagen = reader.result.toString();
-          this.publicacion.video = reader.result.toString();
-          this.imagenPrevisualizacion = reader.result;
+            this.publicacion.miniatura = reader.result.toString();
+          } else if (type === 'subtitulos') {
+            this.publicacion.subtitulos = reader.result.toString();
+          } else {
+            this.publicacion.imagen = reader.result.toString();
+            this.publicacion.video = reader.result.toString();
+            this.imagenPrevisualizacion = reader.result;
+          }
         }
-      } else {
-        console.error('Error al leer el archivo');
       }
-    };
-
-    reader.onerror = (error) => {
-      console.error('Error al cargar el archivo: ', error);
-    };
-
-    reader.readAsDataURL(file);
+    }
   }
+
 
   getCampanias(): void {
     this.publicacionesService.getCampanias()

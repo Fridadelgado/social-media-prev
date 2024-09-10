@@ -28,50 +28,7 @@
   overflow-y: auto;
 }
 
-/* Estilos para el contenido personalizado dentro del modal, permitiendo ajustes visuales basados en el estado de la operación (éxito, error). */
-.custom-content {
-  color: #C5C5C5;
-}
 
-.custom-content.success {
-  color: #A3BD36;
-}
-
-.custom-content.error {
-  color: #f44336;
-}
-
-.input-file {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  padding: 4px 8px;
-  outline: none;
-  font-size: inherit;
-  width: calc(100% - 50px);
-}
-
-/* Contenedor para los menús desplegables */
-.tipo-publicacion-container {
-  position: relative;
-  top: 20px; /* Ajustar la posición vertical */
-  left: 30px;
-}
-
-.tipo-publicacion-select {
-  width: 66px;
-}
-
-/* Estilos adicionales para los iconos activos */
-.active {
-  background-color: transparent;
-  border-radius: 50%;
-  padding: 5px;
-}
-
-/* Cambiar color de los iconos seleccionados a azul */
-.active nb-icon {
-  color: #002A7F !important;
-}
 
 /* Ajustes para la sección de previsualización */
 .previsualizacion-container {
@@ -94,69 +51,17 @@
   margin-top: 20px;
 }
 
-nb-select-placeholder {
-  color: #999;
-}
 
-.dropdown-menu {
-  max-height: 150px;
-  overflow-y: auto;
-}
 
 /* Ajuste manual del tamaño del modal */
 .custom-modal-size {
   max-width: 90%;
 }
 
-/* Estilos adicionales para el selector de tipo de publicación */
-.nb-select .nb-select-menu {
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  margin-top: 0.25rem;
-  min-width: 200px;
-  z-index: 1000;
+.actionButtons{
+  display: flex;
+  justify-content: space-between;
 }
-
-/* Ajustes adicionales para la imagen */
-.post-image {
-  width: 100%;
-  height: auto;
-  max-height: 200px; /* Se asegura de que la imagen no se desborde */
-  object-fit: contain;
-}
-
-/* Estilos para las opciones del menú */
-.nb-select .nb-option {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  color: #495057;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.nb-select .nb-option:hover {
-  background-color: #e9ecef;
-}
-
-/* Estilo para la opción seleccionada */
-.nb-select .nb-option.selected {
-  background-color: #e9ecef;
-  font-weight: bold;
-}
-
-/* Estilos para las opciones que no están disponibles */
-.nb-select .nb-option.disabled {
-  color: #adb5bd;
-  cursor: not-allowed;
-}
-
-/* Estilos para el icono del selector */
-.tipo-publicacion-select::after {
-  display: none; /* Elimina la flecha negra del select */
-}
-
 
 
 @media screen and (max-width:600px) {

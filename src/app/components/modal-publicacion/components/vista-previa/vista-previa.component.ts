@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Publicacion} from "../../../../services/publicaciones.service";
 
 @Component({
@@ -15,24 +15,24 @@ import {Publicacion} from "../../../../services/publicaciones.service";
     './cssPersonalizado/modal-publicacion-pinterest.component.scss'  // Estilos específicos de Pinteres
   ]
 })
-export class VistaPreviaComponent {
+export class VistaPreviaComponent{
   @Input() publicacion!: Publicacion;
   @Input() fileType!: string;
-  redSocialPreviaSeleccionada: string = ''; // Red social seleccionada para la previsualización
+  @Input() redSocialPreviaSeleccionada: string = ''; // Red social seleccionada para la previsualización
+  @Input() imagenPrevisualizacion: string | ArrayBuffer | null = '';
+  @Output() emitAlternarVista = new EventEmitter<'desktop'|'mobile'>();
+
   vistaPrevia: 'desktop' | 'mobile' = 'desktop'; // Vista previa actual, ya sea desktop o mobile
   defaultPreviewImage: string = '../../../assets/images/defaultcar.png';
-  imagenPrevisualizacion: string | ArrayBuffer | null = '';
+
   publicacionDefault = {
     titulo: 'Título Predeterminado',
     descripcion: 'Descripción predeterminada... Este coche no es solo un medio de transporte; es tu próximo compañero de aventuras. Con su elegante diseño, confort inigualable y rendimiento excepcional, está listo para convertirse en parte de tu vida y llevarte a nuevos destinos.',
     redSocial: ['facebook', 'twitter'],
   };
 
-
   alternarVistaPrevia(vista: 'desktop' | 'mobile'): void {
-    this.vistaPrevia = vista;
-    //TODO: FIX detectChanges
-    //this.cdr.detectChanges(); // Asegura que se detecten los cambios
+    this.emitAlternarVista.emit(vista);
   }
 
   // Método opcional para personalizar aún más el estilo de la previsualización

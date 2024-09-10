@@ -81,7 +81,6 @@ export class ModalPublicacionComponent {
 
   ngOnInit(): void {
     this.loadRedesSociales();
-    console.log('Objeto Inicial', this.publicacion);
   }
 
   esFechaValida(): boolean {
@@ -126,21 +125,14 @@ export class ModalPublicacionComponent {
   }
 
 
-
-
   toggleRedSocial(): void {
-    console.log('Toggle event working');
     this.uploadFileService.updateDropZoneMessage(this.publicacion.redSocial, this.redesSociales);
     this.cdr.detectChanges(); // Forzar la detección de cambios
   }
 
   selectTipoPublicacion(tipoPublicacion: TipoPublicacionInterface): void {
-    //this.publicacion.tipoPublicacion = tipo;
-    console.log([this.publicacion, tipoPublicacion]);
     this.seleccionarRedSocialPrevia(tipoPublicacion.redSocial); // Forzar la actualización de la vista previa cuando cambia el tipo de publicación
   }
-
-
 
   definirAudiencia(): void {
     // Lógica para definir la audiencia de la publicación.
