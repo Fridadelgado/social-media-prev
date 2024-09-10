@@ -1,0 +1,46 @@
+<div class="col-md-12 mt-3">
+  <label [ngClass]="{'text-danger': submitted && !publicacion.titulo}">Título de la publicación *</label>
+  <input fullWidth nbInput maxlength="50"
+         placeholder="{{'components.modal-publicacion.placeHolderTituloPublicacion' | translate }}"
+         [(ngModel)]="publicacion.titulo" required class="form-control mb-4">
+</div>
+
+<div class="col-md-12">
+  <label [ngClass]="{'text-danger': submitted && !publicacion.descripcion}">Descripción de la publicación
+    *</label>
+  <textarea fieldSize="large" fullWidth nbInput
+            placeholder="{{'components.modal-publicacion.placehoderDescripcionPublicacion' | translate }}"
+            [(ngModel)]="publicacion.descripcion" required class="form-control mb-4"></textarea>
+</div>
+
+<div class="col-md-12 mb-4">
+  <label [ngClass]="{'text-danger': submitted && !isValidFile}">Imágen o video de la publicación *</label>
+  <ngx-file-drop (click)="fileInput.click()">
+    <ng-template ngx-file-drop-content-tmp>
+      <div class="custom-content" [class.success]="isValidFile" [class.error]="!isValidFile && submitted">
+        {{ dropZoneMessage }}
+      </div>
+    </ng-template>
+  </ngx-file-drop>
+  <input type="file" #fileInput style="display: none;" (change)="onFileSelect($event)">
+</div>
+
+<div class="col-md-12">
+  <label [ngClass]="{'text-danger': submitted && publicacion.subcampanas.length === 0}">
+    Selecciona las subcampañas *
+  </label>
+  <nb-select fullWidth class="mb-4"
+             placeholder="{{'components.modal-publicacion.placeHolderSeleccionaSubcampanas' | translate}}"
+             [(ngModel)]="publicacion.subcampanas" multiple>
+    <nb-option *ngFor="let campania of campanias" [value]="campania.idsubcampanas">
+      {{ campania.nombrecampana }}
+    </nb-option>
+    <nb-option>
+      <nb-icon class="subtitulo-modal-publicacion-icono" icon="mdi-plus-circle-outline" pack="seekop"
+               style="margin-right: 10px;"></nb-icon>
+      <input class="input-file" type="text" placeholder="Nueva subcampaña" (click)="$event.stopPropagation()"
+             id="nuevaSubcampania" (keydown.enter)="agregarNuevaCampania($event)"
+             (keydown.space)="$event.stopPropagation()">
+    </nb-option>
+  </nb-select>
+</div>

@@ -1,3 +1,8 @@
+/* Estilo para el titulo, se genera para mejorar el responsive */
+.title{
+  display: flex;
+}
+
 /* Estilos para imágenes de previsualización en el modal. Se asegura de que las imágenes se ajusten adecuadamente sin sobrepasar su contenedor. */
 .img-previsualizacion {
   width: 350px;
@@ -23,64 +28,7 @@
   overflow-y: auto;
 }
 
-/* Estilos para el contenido personalizado dentro del modal, permitiendo ajustes visuales basados en el estado de la operación (éxito, error). */
-.custom-content {
-  color: #C5C5C5;
-}
 
-.custom-content.success {
-  color: #A3BD36;
-}
-
-.custom-content.error {
-  color: #f44336;
-}
-
-.input-file {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  padding: 4px 8px;
-  outline: none;
-  font-size: inherit;
-  width: calc(100% - 50px);
-}
-
-/* Estilos adicionales para la visualización de los iconos de redes sociales */
-.social-icons-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px; /* Añadir espacio entre los iconos */
-}
-
-.social-icon {
-  position: relative;
-  cursor: pointer; /* Asegurarse de que el cursor cambie a pointer */
-  display: flex;
-  align-items: center;
-}
-
-/* Contenedor para los menús desplegables */
-.tipo-publicacion-container {
-  position: relative;
-  top: 20px; /* Ajustar la posición vertical */
-  left: 30px;
-}
-
-.tipo-publicacion-select {
-  width: 66px;
-}
-
-/* Estilos adicionales para los iconos activos */
-.active {
-  background-color: transparent;
-  border-radius: 50%;
-  padding: 5px;
-}
-
-/* Cambiar color de los iconos seleccionados a azul */
-.active nb-icon {
-  color: #002A7F !important;
-}
 
 /* Ajustes para la sección de previsualización */
 .previsualizacion-container {
@@ -103,139 +51,31 @@
   margin-top: 20px;
 }
 
-nb-select-placeholder {
-  color: #999;
-}
 
-.dropdown-menu {
-  max-height: 150px;
-  overflow-y: auto;
-}
 
 /* Ajuste manual del tamaño del modal */
 .custom-modal-size {
   max-width: 90%;
 }
 
-/* Estilos adicionales para el selector de tipo de publicación */
-.nb-select .nb-select-menu {
-  background-color: #fff;
-  border: 1px solid #ced4da;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  margin-top: 0.25rem;
-  min-width: 200px;
-  z-index: 1000;
-}
-
-/* Ajustes adicionales para la imagen */
-.post-image {
-  width: 100%;
-  height: auto;
-  max-height: 200px; /* Se asegura de que la imagen no se desborde */
-  object-fit: contain;
-}
-
-/* Estilos para las opciones del menú */
-.nb-select .nb-option {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  color: #495057;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.nb-select .nb-option:hover {
-  background-color: #e9ecef;
-}
-
-/* Estilo para la opción seleccionada */
-.nb-select .nb-option.selected {
-  background-color: #e9ecef;
-  font-weight: bold;
-}
-
-/* Estilos para las opciones que no están disponibles */
-.nb-select .nb-option.disabled {
-  color: #adb5bd;
-  cursor: not-allowed;
-}
-
-/* Estilos para el icono del selector */
-.tipo-publicacion-select::after {
-  display: none; /* Elimina la flecha negra del select */
-}
-
-/* Contenedor general para la vista previa */
-.preview-container {
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #fff;
-}
-
-/* Contenedor para la previsualización móvil */
-.mobile-preview-container {
-  width: 320px; /* Ancho típico de móvil */
-  height: auto; /* Ajusta automáticamente la altura */
-  border: 3px solid #ccc;
+.actionButtons{
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  margin: 0 auto;
+  justify-content: space-between;
 }
 
-/* Contenedor para la previsualización de escritorio */
-.desktop-preview-container {
-  width: 600px; /* Ajuste para mantener la proporción de la vista de escritorio */
-  height: auto;
-  border: 3px solid #ccc;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
 
-/* Estilos para la imagen/video en la previsualización móvil */
-.preview-image,
-.preview-video {
-  width: 100%;
-  height: auto;
-  max-height: 200px; /* Ajustamos la altura máxima para que no se salga del contenedor */
-  object-fit: contain; /* Mantener las proporciones */
-  display: block;
-  margin-bottom: 10px;
-}
-
-/* Estilos para el título y la descripción */
-.preview-title {
-  font-size: 16px; /* Ajuste del tamaño de fuente */
-  font-weight: bold;
-  margin: 10px;
-  text-align: center; /* Centra el texto */
-}
-
-.preview-description {
-  font-size: 14px;
-  padding: 0 10px;
-  text-align: center;
-}
-
-/* Estilos para la vista previa predeterminada */
-.default-preview {
-  border: 3px dashed #ccc; /* Un borde diferente para indicar que es el estado predeterminado */
-}
-
-.default-post-preview {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding: 20px;
-  text-align: center;
-}
-
-.default-post-preview .preview-description {
-  font-size: 16px;
-  color: #777;
-  margin-bottom: 20px;
+@media screen and (max-width:600px) {
+  .modal-publicacion {
+    width: 100% !important;
+    height: 100vh;
+    max-height: 98%;
+    overflow-y: auto;
+  }
+  .title{
+    gap: 1rem;
+  }
+  h1{
+    margin-left: 0.5rem !important;
+    font-size: x-large;
+  }
 }

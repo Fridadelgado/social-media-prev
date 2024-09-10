@@ -1,0 +1,17 @@
+<div class="col-md-12">
+  <label [ngClass]="{'text-danger': submitted && publicacion.redSocial.length === 0}">Publicar en *</label>
+  <div class="social-icons-container d-flex flex-wrap">
+    <div *ngFor="let redSocial of redesSociales" class="social-icon m-2"
+         [class.active]="isRedSocialSelected(redSocial.nombre)">
+      <nb-icon [icon]="redSocial.icon" pack="seekop" (click)="toggleRedSocial(redSocial.nombre)"></nb-icon>
+      <div *ngIf="redSocial.tipoPublicacion.length > 0 && isRedSocialSelected(redSocial.nombre)"
+           class="tipo-publicacion-container">
+        <nb-select [(ngModel)]="publicacion.tipoPublicacion"
+                   (selectedChange)="selectTipoPublicacion(redSocial.nombre, publicacion.tipoPublicacion ? publicacion.tipoPublicacion : '')"
+                   class="tipo-publicacion-select">
+          <nb-option *ngFor="let tipo of redSocial.tipoPublicacion" [value]="tipo">{{ tipo }}</nb-option>
+        </nb-select>
+      </div>
+    </div>
+  </div>
+</div>

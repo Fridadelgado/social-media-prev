@@ -1,0 +1,502 @@
+<div [ngClass]="{
+  'mobile-preview-container': vistaPrevia === 'mobile',
+  'desktop-preview-container': vistaPrevia === 'desktop',
+  'facebook-preview': redSocialPreviaSeleccionada.toLowerCase() === 'facebook',
+  'instagram-preview': redSocialPreviaSeleccionada.toLowerCase() === 'instagram',
+  'tiktok-preview': redSocialPreviaSeleccionada.toLowerCase() === 'tiktok',
+  'pinterest-preview': redSocialPreviaSeleccionada.toLowerCase() === 'pinterest',
+  'youtube-preview': redSocialPreviaSeleccionada.toLowerCase() === 'youtube',
+  'twitter-preview': redSocialPreviaSeleccionada.toLowerCase() === 'twitter',
+  'linkedin-preview': redSocialPreviaSeleccionada.toLowerCase() === 'linkedin',
+  'x-preview': redSocialPreviaSeleccionada.toLowerCase() === 'x',
+  'default-preview': !redSocialPreviaSeleccionada || !['facebook', 'instagram', 'tiktok', 'pinterest', 'youtube', 'twitter', 'linkedin', 'x'].includes(redSocialPreviaSeleccionada.toLowerCase())
+}" class="preview-container">
+
+  <!-- Vista previa por defecto cuando no hay ninguna red social seleccionada o si es una red no configurada -->
+  <div
+    *ngIf="!redSocialPreviaSeleccionada || !['facebook', 'instagram', 'tiktok', 'pinterest', 'youtube', 'twitter', 'linkedin', 'x'].includes(redSocialPreviaSeleccionada.toLowerCase())">
+    <div class="default-post-preview">
+      <p class="preview-description">Selecciona una red social para ver la previsualización aquí.</p>
+      <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="post-image">
+    </div>
+  </div>
+
+  <!-- Facebook Preview -->
+  <div *ngIf="redSocialPreviaSeleccionada.toLowerCase() === 'facebook'">
+    <!-- Vista Facebook Post -->
+    <div *ngIf="publicacion.tipoPublicacion === 'post'" class="facebook-post-preview">
+      <!-- Cabecera del Post -->
+      <div class="post-header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Logo de Facebook" class="post-logo">
+        <div class="post-header-info">
+          <strong>Dev-Seekop</strong>
+          <p>21 August at 12:45 PM</p>
+        </div>
+      </div>
+
+      <!-- Contenido del Post -->
+      <div class="post-content">
+        <p>{{ publicacion.descripcion || publicacionDefault.descripcion }}</p>
+
+        <!-- Mostrar imagen o video si existe, de lo contrario mostrar la imagen predeterminada -->
+        <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+          <ng-container *ngIf="imagenPrevisualizacion">
+            <video *ngIf="fileType === 'video'; else imageTemplate" [src]="imagenPrevisualizacion" controls class="post-video"></video>
+          </ng-container>
+          <ng-template #imageTemplate>
+            <img *ngIf="fileType === 'image'" [src]="imagenPrevisualizacion" alt="Post Image" class="post-image">
+          </ng-template>
+        </ng-container>
+        <ng-template #defaultImageTemplate>
+          <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="post-image">
+        </ng-template>
+      </div>
+    </div>
+
+
+    <!-- Vista Facebook Reel -->
+    <div *ngIf="publicacion.tipoPublicacion === 'reel'" class="facebook-reel-preview">
+      <div class="reel-header">
+        <nb-icon icon="arrow-left-outline" pack="eva" class="back-icon"></nb-icon>
+        <div class="reel-info">
+          <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Logo" class="reel-logo">
+          <div>
+            <strong>Dev-Seekop</strong>
+            <button class="follow-button">Seguir</button>
+          </div>
+        </div>
+      </div>
+      <div class="reel-content">
+        <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+          <ng-container *ngIf="imagenPrevisualizacion">
+            <video *ngIf="fileType === 'video'; else imageTemplate" [src]="imagenPrevisualizacion" controls
+                   class="reel-video"></video>
+          </ng-container>
+          <ng-template #imageTemplate>
+            <img *ngIf="fileType === 'image'" [src]="imagenPrevisualizacion" alt="Reel Image"
+                 class="reel-image">
+          </ng-template>
+        </ng-container>
+        <ng-template #defaultImageTemplate>
+          <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="reel-image">
+        </ng-template>
+        <p class="video-unavailable" *ngIf="!imagenPrevisualizacion && fileType === 'video'">Video no
+          disponible</p>
+      </div>
+      <div class="reel-footer">
+        <button class="footer-button">Enviar</button>
+        <div class="interaction-icons">
+          <div class="icon-text">
+            <nb-icon icon="thumbs-up-outline" pack="eva"></nb-icon>
+            <span>0</span>
+          </div>
+          <div class="icon-text">
+            <nb-icon icon="message-circle-outline" pack="eva"></nb-icon>
+            <span>0</span>
+          </div>
+          <div class="icon-text">
+            <nb-icon icon="share-outline" pack="eva"></nb-icon>
+            <span>0</span>
+          </div>
+        </div>
+      </div>
+      <div class="reel-caption">
+        <p>{{ publicacion.descripcion || 'asdfasdf' }}</p>
+        <div class="music-info">
+          <nb-icon icon="music-outline" pack="eva"></nb-icon>
+          <span>Dev-Seekop</span>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Vista Facebook Story -->
+    <div *ngIf="publicacion.tipoPublicacion === 'story'" class="facebook-story-preview">
+      <div class="story-header">
+        <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Logo" class="story-logo">
+        <div class="story-info">
+          <strong>Dev-Seekop</strong>
+          <p>10m</p>
+        </div>
+      </div>
+      <div class="story-content">
+        <!-- Mostrar imagen o video si existe, de lo contrario mostrar la imagen predeterminada -->
+        <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+          <ng-container *ngIf="imagenPrevisualizacion">
+            <video *ngIf="fileType === 'video'; else imageTemplate" [src]="imagenPrevisualizacion" controls
+                   class="story-video"></video>
+          </ng-container>
+          <ng-template #imageTemplate>
+            <img *ngIf="fileType === 'image'" [src]="imagenPrevisualizacion" alt="Story Image"
+                 class="story-image">
+          </ng-template>
+        </ng-container>
+        <ng-template #defaultImageTemplate>
+          <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="story-image">
+        </ng-template>
+      </div>
+      <div class="story-footer">
+        <button class="footer-button">Enviar mensaje</button>
+        <div class="footer-icons">
+          <nb-icon icon="heart-outline" pack="eva"></nb-icon>
+          <nb-icon icon="paper-plane-outline" pack="eva"></nb-icon>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <!-- Instagram Preview -->
+  <div *ngIf="redSocialPreviaSeleccionada.toLowerCase() === 'instagram'">
+    <!-- Vista Instagram Post -->
+    <div *ngIf="publicacion.tipoPublicacion === 'post'" class="instagram-preview">
+      <div class="instagram-post-preview">
+        <div class="post-header">
+          <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Profile Picture"
+               class="story-logo">
+          <div class="post-user-info">
+            <strong>seekopimagine</strong>
+            <p>Hace 1 hora</p>
+          </div>
+        </div>
+        <div class="post-content">
+          <img [src]="imagenPrevisualizacion || defaultPreviewImage" alt="Instagram Post" class="post-image">
+        </div>
+        <div class="post-footer">
+          <div class="icons">
+            <nb-icon icon="heart-outline" pack="eva"></nb-icon>
+            <nb-icon icon="message-circle-outline" pack="eva"></nb-icon>
+            <nb-icon icon="paper-plane-outline" pack="eva"></nb-icon>
+          </div>
+          <div class="post-description">
+            <strong>seekopimagine</strong> {{ publicacion.descripcion || 'Texto de ejemplo...' }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vista Instagram Reel -->
+    <div *ngIf="publicacion.tipoPublicacion === 'reel'" class="instagram-preview">
+      <div class="instagram-reel-preview">
+        <div class="reel-content">
+          <!-- Mostrar video si está disponible, de lo contrario mostrar la imagen predeterminada -->
+          <ng-container *ngIf="fileType === 'video' && imagenPrevisualizacion; else imageTemplate">
+            <video [src]="imagenPrevisualizacion" controls class="reel-video"></video>
+          </ng-container>
+          <ng-template #imageTemplate>
+            <img [src]="imagenPrevisualizacion || defaultPreviewImage" alt="Instagram Reel"
+                 class="reel-image">
+          </ng-template>
+        </div>
+        <div class="reel-caption">
+          <p>{{ publicacion.descripcion || 'Texto de ejemplo...' }}</p>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- Instagram Story Preview -->
+    <div *ngIf="publicacion.tipoPublicacion === 'story'" class="instagram-preview">
+      <div class="instagram-story-preview">
+        <div class="story-header">
+          <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Profile Picture"
+               class="story-logo">
+          <div class="story-user-info">
+            <strong>seekopimagine</strong>
+            <p>Hace 10m</p>
+          </div>
+        </div>
+        <div class="story-content">
+          <video *ngIf="fileType === 'video'" [src]="imagenPrevisualizacion" controls
+                 class="story-video"></video>
+          <img *ngIf="fileType !== 'video'" [src]="imagenPrevisualizacion || defaultPreviewImage"
+               alt="Instagram Story" class="story-image">
+        </div>
+        <div class="story-footer">
+          <button class="footer-button">Enviar mensaje</button>
+          <div class="footer-icons">
+            <nb-icon icon="heart-outline" pack="eva"></nb-icon>
+            <nb-icon icon="paper-plane-outline" pack="eva"></nb-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+  <!-- TikTok Preview -->
+  <div *ngIf="redSocialPreviaSeleccionada.toLowerCase() === 'tiktok'">
+    <!-- Solo se muestra el marco de TikTok -->
+    <div class="tiktok-preview">
+      <!-- Aquí en el futuro puedes agregar la vista real de TikTok -->
+      <div class="tiktok-header">
+        <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Profile Picture"
+             class="story-logo">
+        <div class="tiktok-header-info">
+          <strong>devseekop</strong>
+          <p>Publicado el 25 agosto</p>
+        </div>
+      </div>
+
+      <!-- Contenido del TikTok -->
+      <div class="tiktok-content">
+        <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+          <ng-container *ngIf="imagenPrevisualizacion">
+            <video *ngIf="fileType === 'video'; else imageTemplate" [src]="imagenPrevisualizacion" controls class="tiktok-video"></video>
+          </ng-container>
+          <ng-template #imageTemplate>
+            <img *ngIf="fileType === 'image'" [src]="imagenPrevisualizacion" alt="TikTok Image" class="tiktok-image">
+          </ng-template>
+        </ng-container>
+        <ng-template #defaultImageTemplate>
+          <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="tiktok-image">
+        </ng-template>
+      </div>
+
+      <!-- Pie de página del TikTok -->
+      <div class="tiktok-footer">
+        <p>{{ publicacion.descripcion || publicacionDefault.descripcion }}</p>
+        <div class="tiktok-actions">
+          <button class="tiktok-action"><i class="fas fa-heart" style="color: #002A7F;"></i> 12K</button>
+          <button class="tiktok-action"><i class="fas fa-comment"></i> 345</button>
+          <button class="tiktok-action"><i class="fas fa-share"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pinterest Preview -->
+  <div *ngIf="redSocialPreviaSeleccionada.toLowerCase() === 'pinterest'" class="pinterest-preview">
+    <!-- Solo se muestra el marco de Pinterest -->
+    <div class="pin-header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png" alt="Logo de Pinterest" class="pin-logo">
+      <div class="pin-header-info">
+        <strong>Dev-Seekop</strong>
+        <p>Guardado desde devseekop.com</p>
+      </div>
+    </div>
+
+    <!-- Contenido del Pin -->
+    <div class="pin-content">
+      <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+        <ng-container *ngIf="imagenPrevisualizacion">
+          <img *ngIf="fileType === 'image'; else videoTemplate" [src]="imagenPrevisualizacion" alt="Pin Image" class="pin-image">
+        </ng-container>
+        <ng-template #videoTemplate>
+          <video *ngIf="fileType === 'video'" [src]="imagenPrevisualizacion" controls class="pin-video"></video>
+        </ng-template>
+      </ng-container>
+      <ng-template #defaultImageTemplate>
+        <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="pin-image">
+      </ng-template>
+    </div>
+
+    <!-- Información del Pin -->
+    <div class="pin-footer">
+      <p>{{ publicacion.descripcion || publicacionDefault.descripcion }}</p>
+      <div class="pin-actions">
+        <button class="pin-action">Guardar</button>
+        <button class="pin-action"><i class="fas fa-share"></i></button>
+        <button class="pin-action"><i class="fas fa-ellipsis-h"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- YouTube Preview -->
+  <div *ngIf="redSocialPreviaSeleccionada.toLowerCase() === 'youtube'">
+    <!-- Vista YouTube Video -->
+    <div *ngIf="publicacion.tipoPublicacion === 'video'" class="youtube-preview">
+      <div class="youtube-post-preview">
+        <!-- Miniatura del Video -->
+        <div class="thumbnail">
+          <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+            <ng-container *ngIf="imagenPrevisualizacion">
+              <video *ngIf="fileType === 'video'; else imageTemplate" [src]="imagenPrevisualizacion" controls class="story-video"></video>
+            </ng-container>
+            <ng-template #imageTemplate>
+              <img *ngIf="fileType === 'image'" [src]="imagenPrevisualizacion" alt="Story Image" class="story-image">
+            </ng-template>
+          </ng-container>
+          <ng-template #defaultImageTemplate>
+            <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="story-image">
+          </ng-template>
+          <span class="video-duration">10:34</span>
+        </div>
+
+        <!-- Información del Video -->
+        <div class="video-info">
+          <div class="channel-avatar">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="Logo de YouTube" class="story-logo">
+          </div>
+          <div class="video-details">
+            <h3 class="video-title">Título del Video</h3>
+            <p class="channel-name">seekopimagine</p>
+            <p class="video-stats">1.2M vistas • Hace 2 días</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="publicacion.tipoPublicacion === 'short'" class="youtube-preview">
+      <div class="youtube-short-preview">
+        <!-- Miniatura del Short -->
+        <div class="thumbnail">
+          <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+            <ng-container *ngIf="imagenPrevisualizacion">
+              <video *ngIf="fileType === 'video'; else imageTemplate" [src]="imagenPrevisualizacion" controls
+                     class="story-video"></video>
+            </ng-container>
+            <ng-template #imageTemplate>
+              <img *ngIf="fileType === 'image'" [src]="imagenPrevisualizacion" alt="Story Image"
+                   class="story-image">
+            </ng-template>
+          </ng-container>
+          <ng-template #defaultImageTemplate>
+            <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="story-image">
+          </ng-template>
+
+          <span class="video-duration">0:15</span>
+        </div>
+
+        <!-- Información del Short -->
+        <div class="short-info">
+          <h3 class="short-title">Título del Short de YouTube</h3>
+          <p class="short-stats">2.3M vistas • Hace 5 horas</p>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <!-- Twitter Preview -->
+  <div *ngIf="redSocialPreviaSeleccionada.toLowerCase() === 'twitter'">
+    <!-- Solo se muestra el marco de Twitter -->
+    <div class="twitter-preview">
+      <div class="twitter-post-preview">
+        <!-- Avatar del usuario -->
+        <div class="user-info">
+          <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Profile Picture"
+               class="story-logo">
+          <div class="user-details">
+            <span class="user-name">Seekop</span>
+          </div>
+        </div>
+
+        <!-- Texto del Tweet -->
+        <p class="tweet-text">Este es un ejemplo de un tweet con un video adjunto. #Ejemplo #VideoTweet</p>
+
+        <!-- Video del Tweet -->
+        <div class="video-container">
+          <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+            <ng-container *ngIf="imagenPrevisualizacion">
+              <video *ngIf="fileType === 'video'; else imageTemplate" [src]="imagenPrevisualizacion" controls
+                     class="story-video"></video>
+            </ng-container>
+            <ng-template #imageTemplate>
+              <img *ngIf="fileType === 'image'" [src]="imagenPrevisualizacion" alt="Story Image"
+                   class="story-image">
+            </ng-template>
+          </ng-container>
+          <ng-template #defaultImageTemplate>
+            <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="story-image">
+          </ng-template>
+          <span class="video-duration">1:20</span>
+        </div>
+
+        <!-- Detalles de interacción -->
+        <div class="tweet-stats">
+          <span class="tweet-stat">3.5K vistas</span>
+          <span class="tweet-stat">500 Retweets</span>
+          <span class="tweet-stat">1.2K Me gusta</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- LinkedIn Preview -->
+  <div *ngIf="redSocialPreviaSeleccionada.toLowerCase() === 'linkedin'">
+    <!-- Solo se muestra el marco de LinkedIn -->
+    <div class="linkedin-preview">
+      <!-- Aquí en el futuro puedes agregar la vista real de LinkedIn -->
+      <div class="linkedin-post-preview">
+        <!-- Encabezado de LinkedIn con logo -->
+        <div class="header">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="Logo de LinkedIn" class="linkedin-logo">
+          <span class="header-text">LinkedIn</span>
+        </div>
+
+        <!-- Información del usuario o empresa -->
+        <div class="user-info">
+          <img src="https://seekop.com/wp-content/uploads/2020/07/logo-azul.png" alt="Profile Picture"
+               class="story-logo">                    <div class="user-details">
+          <span class="user-name">Seekop</span>
+          <span class="user-title">Seekop User</span>
+        </div>
+        </div>
+
+        <!-- Texto del Post -->
+        <p class="post-text">Este es un ejemplo de una publicación en LinkedIn con un video adjunto. ¡Mira este contenido increíble! #Ejemplo #VideoPost</p>
+
+        <!-- Video del Post -->
+        <div class="video-container">
+          <ng-container *ngIf="fileType !== ''; else defaultImageTemplate">
+            <ng-container *ngIf="imagenPrevisualizacion">
+              <video *ngIf="fileType === 'video'; else imageTemplate" [src]="imagenPrevisualizacion" controls
+                     class="story-video"></video>
+            </ng-container>
+            <ng-template #imageTemplate>
+              <img *ngIf="fileType === 'image'" [src]="imagenPrevisualizacion" alt="Story Image"
+                   class="story-image">
+            </ng-template>
+          </ng-container>
+          <ng-template #defaultImageTemplate>
+            <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="story-image">
+          </ng-template>
+          <span class="video-duration">3:45</span>
+        </div>
+
+        <!-- Detalles de interacción -->
+        <div class="post-stats">
+          <span class="post-stat">1.5K vistas</span>
+          <span class="post-stat">200 Comentarios</span>
+          <span class="post-stat">350 Reacciones</span>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+  <!-- X Preview -->
+  <div *ngIf="redSocialPreviaSeleccionada.toLowerCase() === 'x'">
+    <!-- Solo se muestra el marco de X (anteriormente Twitter) -->
+    <div class="x-preview">
+      <!-- Aquí en el futuro puedes agregar la vista real de X -->
+      <ng-container *ngIf="imagenPrevisualizacion; else defaultImageTemplate"></ng-container>
+      <ng-template #defaultImageTemplate>
+        <img [src]="defaultPreviewImage" alt="Imagen por defecto" class="post-image">
+      </ng-template>
+    </div>
+  </div>
+
+</div>
+
+&nbsp;
+<div class="row mt-12">
+  <div class="col-md-12">
+    <button nbButton outline status="primary" (click)="alternarVistaPrevia('desktop')">Vista Escritorio</button>
+    &nbsp;
+    <button nbButton outline status="primary" (click)="alternarVistaPrevia('mobile')">Vista Móvil</button>
+  </div>
+</div>
