@@ -1,4 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { NbDialogRef } from '@nebular/theme';
 import { PublicacionesService, Publicacion } from '../../services/publicaciones.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -70,6 +71,45 @@ export class ModalPublicacionComponent {
   isValidFile: boolean = false;
   dropZoneMessage: string = "";
 
+  //Declaracion de formularios
+  facebookForm: FormGroup = this.fb.group({
+    enlace:['', [Validators.required, Validators.minLength(4)]],
+    ubicacion:['', [Validators.required, Validators.minLength(4)]],
+    etiquetas:['', [Validators.required, Validators.minLength(4)]],
+  });
+  instagramForm: FormGroup = this.fb.group({
+    ubicacion:['', [Validators.required, Validators.minLength(4)]],
+    etiquetas:['', [Validators.required, Validators.minLength(4)]],
+    altText:['', [Validators.required, Validators.minLength(4)]],
+  });
+  linkedinForm: FormGroup = this.fb.group({
+    enlace:['', [Validators.required, Validators.minLength(4)]],
+    texto:['', [Validators.required, Validators.minLength(4)]],
+    etiquetas:['', [Validators.required, Validators.minLength(4)]],
+  });
+  pinterestForm: FormGroup = this.fb.group({
+    enlace:['', [Validators.required, Validators.minLength(4)]],
+    tablero:['', [Validators.required, Validators.minLength(4)]],
+  });
+  tiktokForm: FormGroup = this.fb.group({
+    hashtags:['', [Validators.required, Validators.minLength(4)]],
+    enlace:['', [Validators.required, Validators.minLength(4)]],
+    etiquetas:['', [Validators.required, Validators.minLength(4)]],
+  });
+  twitterForm: FormGroup = this.fb.group({
+    enlace:['', [Validators.required, Validators.minLength(4)]],
+    hashtags:['', [Validators.required, Validators.minLength(4)]],
+  });
+  youtubeForm: FormGroup = this.fb.group({
+    titulo:['', [Validators.required, Validators.minLength(4)]],
+    tags:['', [Validators.required, Validators.minLength(4)]],
+    miniatura:['', [Validators.required, Validators.minLength(4)]],
+    playlist:['', [Validators.required, Validators.minLength(4)]],
+    categoria:['', [Validators.required, Validators.minLength(4)]],
+    subtitulos:['', [Validators.required, Validators.minLength(4)]],
+
+  });
+
   constructor(
     protected ref: NbDialogRef<ModalPublicacionComponent>,
     private publicacionesService: PublicacionesService,
@@ -77,6 +117,7 @@ export class ModalPublicacionComponent {
     private cdr: ChangeDetectorRef,
     private dynamicComponentService: DynamicComponentService,
     private uploadFileService: UploadFileService,
+    private fb: FormBuilder,
   ) {
     const currentDate = new Date();
     this.minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
@@ -145,6 +186,8 @@ export class ModalPublicacionComponent {
   }
 
   agregarPublicacion(): void {
+    //TODO: Revisar si los divs existen y con base a ello validar el fomulario en cuestion
+
     this.submitted = true;
 
     if (this.publicacion.redSocial.length === 0 || !this.publicacion.titulo || !this.publicacion.descripcion || !this.imagenPrevisualizacion) {
@@ -190,7 +233,6 @@ export class ModalPublicacionComponent {
     }
     return '';
   }
-
 
 
   closeModal(): void {

@@ -1,0 +1,21 @@
+<form [formGroup]="instagramForm">
+  <div class="col-md-12 mb-3">
+    <label>Ubicación</label>
+    <input fullWidth nbInput placeholder="Ubicación" formControlName="ubicacion"
+           class="form-control mb-3" />
+  </div>
+  <div class="col-md-12 mb-3">
+    <label>Etiquetas</label>
+    <input formControlName="etiquetas" fullWidth nbInput placeholder="Etiquetas" class="form-control mb-3" />
+  </div>
+  <div class="col-md-12 mb-3">
+    <label>Alt Text</label>
+    <input fullWidth nbInput placeholder="Alt Text" formControlName="altText"
+           class="form-control mb-3" />
+  </div>
+  <div class="col-md-12">
+    <div class="alert alert-warning" role="alert">
+      Video: Máximo 60 segundos. Imagen: Resolución recomendada 1080x1080 píxeles.
+    </div>
+  </div>
+</form>

@@ -1,0 +1,17 @@
+<form [formGroup]="tiktokForm">
+  <div  class="col-md-12 mb-3">
+    <label>Hashtags</label>
+    <input fullWidth nbInput placeholder="Hashtags" formControlName="hashtags"
+           class="form-control mb-3" />
+  </div>
+  <div class="col-md-12 mb-3">
+    <label>Enlace</label>
+    <input fullWidth nbInput placeholder="Enlace" formControlName="enlace"
+           class="form-control mb-3" />
+  </div>
+  <div class="col-md-12">
+    <div class="alert alert-warning" role="alert">
+      Duración: Máximo 10 minutos. Resolución recomendada: 1080x1920 píxeles.
+    </div>
+  </div>
+</form>
