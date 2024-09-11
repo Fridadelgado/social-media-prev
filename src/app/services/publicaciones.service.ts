@@ -10,7 +10,7 @@ export interface Publicacion {
   redSocial: string[];
   titulo: string;
   descripcion: string;
-  subcampanas: string[];
+  subcampanas: string;
   imagen: string;
   video: string;
   link: string;

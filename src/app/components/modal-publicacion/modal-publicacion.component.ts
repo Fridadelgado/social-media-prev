@@ -32,7 +32,7 @@ export class ModalPublicacionComponent {
     redSocial: [],
     titulo: '',
     descripcion: '',
-    subcampanas: [],
+    subcampanas: '',
     imagen: '',
     link: '',
     video: '',

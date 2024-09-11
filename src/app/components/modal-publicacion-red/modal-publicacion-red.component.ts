@@ -84,7 +84,7 @@ export class ModalPublicacionRedComponent {
       redSocial: this.root.selectedRedesSociales.map(red => red.nombreRedSocial),
       titulo: 'Título predeterminado',
       descripcion: 'Descripción predeterminada',
-      subcampanas: [],
+      subcampanas: '',
       imagen: '',
       link: '',
       video: '',
