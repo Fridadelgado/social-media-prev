@@ -4,177 +4,47 @@
     <nb-accordion-item-body>
       <div class="row">
         <!-- Facebook -->
-        <div *ngIf="redSocial.toLowerCase() === 'facebook' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Enlace</label>
-          <input fullWidth nbInput placeholder="Enlace" [(ngModel)]="publicacion.enlace"
-                 class="form-control mb-3" />
+        <div *ngIf="redSocial.toLowerCase() === 'facebook' && publicacion.tipoPublicacion">
+          <modal-publicacion-acordeon-forms-facebook-form
+                  [redSocial]="redSocial"
+                  [publicacion]="publicacion" />
         </div>
-        <div *ngIf="redSocial.toLowerCase() === 'facebook' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Ubicación</label>
-          <input fullWidth nbInput placeholder="Ubicación" [(ngModel)]="publicacion.ubicacion"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'facebook' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Etiquetas</label>
-          <input fullWidth nbInput placeholder="Etiquetas" [(ngModel)]="publicacion.etiquetas"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'facebook' && publicacion.tipoPublicacion" class="col-md-12">
-          <div class="alert alert-warning" role="alert">
-            Video: Máximo 240 minutos, 4GB. Imagen: Resolución mínima 600x315 píxeles.
-          </div>
-        </div>
-
         <!-- Instagram -->
-        <div *ngIf="redSocial.toLowerCase() === 'instagram' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Ubicación</label>
-          <input fullWidth nbInput placeholder="Ubicación" [(ngModel)]="publicacion.ubicacion"
-                 class="form-control mb-3" />
+        <div *ngIf="redSocial.toLowerCase() === 'instagram' && publicacion.tipoPublicacion">
+          <modal-publicacion-acordeon-forms-instagram-form
+            [redSocial]="redSocial"
+            [publicacion]="publicacion" />
         </div>
-        <div *ngIf="redSocial.toLowerCase() === 'instagram' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Etiquetas</label>
-          <input fullWidth nbInput placeholder="Etiquetas" [(ngModel)]="publicacion.etiquetas"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'instagram' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Alt Text</label>
-          <input fullWidth nbInput placeholder="Alt Text" [(ngModel)]="publicacion.altText"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'instagram' && publicacion.tipoPublicacion" class="col-md-12">
-          <div class="alert alert-warning" role="alert">
-            Video: Máximo 60 segundos. Imagen: Resolución recomendada 1080x1080 píxeles.
-          </div>
-        </div>
-
         <!-- YouTube -->
-        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Título</label>
-          <input fullWidth nbInput placeholder="Título" [(ngModel)]="publicacion.tituloVideo"
-                 class="form-control mb-3" />
+        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion">
+          <modal-publicacion-acordeon-forms-youtube-form
+            [redSocial]="redSocial"
+            [publicacion]="publicacion"/>
         </div>
-        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Tags</label>
-          <input fullWidth nbInput placeholder="Tags" [(ngModel)]="publicacion.tags"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Miniatura</label>
-          <input type="file" fullWidth nbInput (change)="onFileSelect($event, 'miniatura')"
-            class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Playlist</label>
-          <input fullWidth nbInput placeholder="Playlist" [(ngModel)]="publicacion.playlist"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Categoría</label>
-          <input fullWidth nbInput placeholder="Categoría" [(ngModel)]="publicacion.categoria"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Subtítulos</label>
-          <input type="file" fullWidth nbInput (change)="onFileSelect($event, 'subtitulos')"
-            class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion" class="col-md-12">
-          <label>Público/Privado</label>
-          <nb-select fullWidth [(ngModel)]="publicacion.privacidad" class="form-control mb-3">
-            <nb-option value="publico">Público</nb-option>
-            <nb-option value="privado">Privado</nb-option>
-          </nb-select>
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion" class="col-md-12">
-          <div class="alert alert-warning" role="alert">
-            Corta Duración: Hasta 15 minutos. Larga Duración: Más de 15 minutos. Resolución mínima: 720p.
-          </div>
-        </div>
-
         <!-- TikTok -->
-        <div *ngIf="redSocial.toLowerCase() === 'tiktok' && publicacion.tipoPublicacion" class="col-md-12 mb-3">
-          <label>Hashtags</label>
-          <input fullWidth nbInput placeholder="Hashtags" [(ngModel)]="publicacion.hashtags"
-                 class="form-control mb-3" />
+        <div *ngIf="redSocial.toLowerCase() === 'tiktok' && publicacion.tipoPublicacion">
+          <modal-publicacion-acordeon-forms-tiktok-form
+            [redSocial]="redSocial"
+            [publicacion]="publicacion"
+          />
         </div>
-        <div *ngIf="redSocial.toLowerCase() === 'tiktok' && publicacion.tipoPublicacion" class="col-md-12 mb-3">
-          <label>Enlace</label>
-          <input fullWidth nbInput placeholder="Enlace" [(ngModel)]="publicacion.enlaceTikTok"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'tiktok' && publicacion.tipoPublicacion" class="col-md-12">
-          <div class="alert alert-warning" role="alert">
-            Duración: Máximo 10 minutos. Resolución recomendada: 1080x1920 píxeles.
-          </div>
-        </div>
-
         <!-- LinkedIn -->
-        <div *ngIf="redSocial.toLowerCase() === 'linkedin' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Enlace</label>
-          <input fullWidth nbInput placeholder="Enlace" [(ngModel)]="publicacion.enlaceLinkedIn"
-                 class="form-control mb-3" />
+        <div *ngIf="redSocial.toLowerCase() === 'linkedin' && publicacion.tipoPublicacion">
+          <modal-publicacion-acordeon-forms-linkedin-form
+            [redSocial]="redSocial"
+            [publicacion]="publicacion"
+          />
         </div>
-        <div *ngIf="redSocial.toLowerCase() === 'linkedin' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Texto</label>
-          <textarea fullWidth nbInput placeholder="Texto" [(ngModel)]="publicacion.textoHistoriaLinkedIn"
-                    class="form-control mb-3"></textarea>
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'linkedin' && publicacion.tipoPublicacion" class="col-md-12">
-          <div class="alert alert-warning" role="alert">
-            Video: Máximo 20 segundos. Imagen: Resolución recomendada 1080x1920 píxeles.
-          </div>
-        </div>
-
         <!-- Pinterest -->
-        <div *ngIf="redSocial.toLowerCase() === 'pinterest' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Enlace</label>
-          <input fullWidth nbInput placeholder="Enlace" [(ngModel)]="publicacion.enlacePinterest"
-                 class="form-control mb-3" />
+        <div *ngIf="redSocial.toLowerCase() === 'pinterest' && publicacion.tipoPublicacion">
+          <modal-publicacion-acordeon-forms-pinterest-form
+            [redSocial]="redSocial"
+            [publicacion]="publicacion" />
         </div>
-        <div *ngIf="redSocial.toLowerCase() === 'pinterest' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Tablero</label>
-          <input fullWidth nbInput placeholder="Tablero" [(ngModel)]="publicacion.tablero"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'pinterest' && publicacion.tipoPublicacion" class="col-md-12">
-          <div class="alert alert-warning" role="alert">
-            Video: Máximo 15 minutos. Imagen: Resolución mínima 600x900 píxeles.
-          </div>
-        </div>
-
         <!-- Twitter -->
-        <div *ngIf="redSocial.toLowerCase() === 'twitter' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Enlace</label>
-          <input fullWidth nbInput placeholder="Enlace" [(ngModel)]="publicacion.enlaceTwitter"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'twitter' && publicacion.tipoPublicacion"
-             class="col-md-12 mb-3">
-          <label>Hashtags</label>
-          <input fullWidth nbInput placeholder="Hashtags" [(ngModel)]="publicacion.hashtagsTwitter"
-                 class="form-control mb-3" />
-        </div>
-        <div *ngIf="redSocial.toLowerCase() === 'twitter' && publicacion.tipoPublicacion" class="col-md-12">
-          <div class="alert alert-warning" role="alert">
-            Video: Máximo 2 minutos 20 segundos. Imagen: Resolución mínima 440x220 píxeles.
-          </div>
+        <div *ngIf="redSocial.toLowerCase() === 'twitter' && publicacion.tipoPublicacion">
+          <modal-publicacion-acordeon-forms-twitter-form
+          />
         </div>
       </div>
     </nb-accordion-item-body>

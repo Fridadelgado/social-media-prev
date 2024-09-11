@@ -1,0 +1,42 @@
+<div class="col-md-12 mb-3">
+  <label>Título</label>
+  <input fullWidth nbInput placeholder="Título" formControlName="titulo"
+         class="form-control mb-3" />
+</div>
+<div class="col-md-12 mb-3">
+  <label>Tags</label>
+  <input fullWidth nbInput placeholder="Tags" formControlName="tags"
+         class="form-control mb-3" />
+</div>
+<div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion"
+     class="col-md-12 mb-3">
+  <label>Miniatura</label>
+  <input type="file" fullWidth nbInput (change)="onFileSelect($event, 'miniatura')" formControlName="miniatura"
+         class="form-control mb-3" />
+</div>
+<div class="col-md-12 mb-3">
+  <label>Playlist</label>
+  <input fullWidth nbInput placeholder="Playlist" formControlName="playlist"
+         class="form-control mb-3" />
+</div>
+<div class="col-md-12 mb-3">
+  <label>Categoría</label>
+  <input fullWidth nbInput placeholder="Categoría" formControlName="categoria" class="form-control mb-3" />
+</div>
+<div class="col-md-12 mb-3">
+  <label>Subtítulos</label>
+  <input type="file" fullWidth nbInput (change)="onFileSelect($event, 'subtitulos')" formControlName="subtitulos"
+         class="form-control mb-3" />
+</div>
+<div class="col-md-12">
+  <label>Público/Privado</label>
+  <nb-select fullWidth class="form-control mb-3" formControlName="privacidad">
+    <nb-option value="publico">Público</nb-option>
+    <nb-option value="privado">Privado</nb-option>
+  </nb-select>
+</div>
+<div class="col-md-12">
+  <div class="alert alert-warning" role="alert">
+    Corta Duración: Hasta 15 minutos. Larga Duración: Más de 15 minutos. Resolución mínima: 720p.
+  </div>
+</div>

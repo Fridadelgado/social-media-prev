@@ -1,0 +1,17 @@
+<form [formGroup]="pinterestForm">
+  <div class="col-md-12 mb-3">
+    <label>Enlace</label>
+    <input fullWidth nbInput placeholder="Enlace" formControlName="enlace"
+           class="form-control mb-3" />
+  </div>
+  <div class="col-md-12 mb-3">
+    <label>Tablero</label>
+    <input fullWidth nbInput placeholder="Tablero" formControlName="tablero"
+           class="form-control mb-3" />
+  </div>
+  <div class="col-md-12">
+    <div class="alert alert-warning" role="alert">
+      Video: Máximo 15 minutos. Imagen: Resolución mínima 600x900 píxeles.
+    </div>
+  </div>
+</form>
