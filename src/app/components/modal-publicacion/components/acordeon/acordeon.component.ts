@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Publicacion} from "../../../../services/publicaciones.service";
 import {FileSelectInterface} from "../../interfaces/file-select.interface";
 
@@ -10,6 +10,14 @@ import {FileSelectInterface} from "../../interfaces/file-select.interface";
 })
 export class AcordeonComponent {
   @Input() publicacion!: Publicacion;
+  @Input() facebookForm!: FormGroup;
+  @Input() instagramForm!: FormGroup;
+  @Input() linkedinForm!: FormGroup;
+  @Input() pinterestForm!: FormGroup;
+  @Input() tiktokForm!: FormGroup;
+  @Input() twitterForm!: FormGroup;
+  @Input() youtubeForm!: FormGroup;
+
   @Output() emitFileSelectEvent:EventEmitter<FileSelectInterface> = new EventEmitter<FileSelectInterface>();
   tipoPubliacion = {
     'enlace': '',
@@ -17,8 +25,6 @@ export class AcordeonComponent {
     'etiquetas': '',
     'customText': ''
   }
-  facebookForm = new FormBuilder();
-
 
   constructor(private fb: FormBuilder) {
   }

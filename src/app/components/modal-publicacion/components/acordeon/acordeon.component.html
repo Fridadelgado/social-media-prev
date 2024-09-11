@@ -7,25 +7,29 @@
         <div *ngIf="redSocial.toLowerCase() === 'facebook' && publicacion.tipoPublicacion">
           <modal-publicacion-acordeon-forms-facebook-form
                   [redSocial]="redSocial"
-                  [publicacion]="publicacion" />
+                  [publicacion]="publicacion"
+                  [facebookForm]="facebookForm" />
         </div>
         <!-- Instagram -->
         <div *ngIf="redSocial.toLowerCase() === 'instagram' && publicacion.tipoPublicacion">
           <modal-publicacion-acordeon-forms-instagram-form
             [redSocial]="redSocial"
-            [publicacion]="publicacion" />
+            [publicacion]="publicacion"
+            [instagramForm]="instagramForm" />
         </div>
         <!-- YouTube -->
         <div *ngIf="redSocial.toLowerCase() === 'youtube' && publicacion.tipoPublicacion">
           <modal-publicacion-acordeon-forms-youtube-form
             [redSocial]="redSocial"
-            [publicacion]="publicacion"/>
+            [publicacion]="publicacion"
+            [youtubeForm]="youtubeForm" />
         </div>
         <!-- TikTok -->
         <div *ngIf="redSocial.toLowerCase() === 'tiktok' && publicacion.tipoPublicacion">
           <modal-publicacion-acordeon-forms-tiktok-form
             [redSocial]="redSocial"
             [publicacion]="publicacion"
+            [tiktokForm]="tiktokForm"
           />
         </div>
         <!-- LinkedIn -->
@@ -33,17 +37,22 @@
           <modal-publicacion-acordeon-forms-linkedin-form
             [redSocial]="redSocial"
             [publicacion]="publicacion"
+            [linkedinForm]="linkedinForm"
           />
         </div>
         <!-- Pinterest -->
         <div *ngIf="redSocial.toLowerCase() === 'pinterest' && publicacion.tipoPublicacion">
           <modal-publicacion-acordeon-forms-pinterest-form
             [redSocial]="redSocial"
-            [publicacion]="publicacion" />
+            [publicacion]="publicacion"
+            [pinterestForm]="pinterestForm" />
         </div>
         <!-- Twitter -->
         <div *ngIf="redSocial.toLowerCase() === 'twitter' && publicacion.tipoPublicacion">
           <modal-publicacion-acordeon-forms-twitter-form
+            [redSocial]="redSocial"
+            [publicacion]="publicacion"
+            [twitterForm]="twitterForm"
           />
         </div>
       </div>
